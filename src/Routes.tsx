@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
-import { LandingPage, HomePage, PokedexPage, PokemonPage } from './pages'
+import { LandingPage, PokedexPage, PokemonPage } from './pages'
 
 const AppRoutes = () => {
   return (
@@ -13,9 +13,8 @@ const AppRoutes = () => {
 
         {/* =============================================================== */}
 
-        <Route path="/home" element={<HomePage />} />
         <Route path="/pokedex" element={<PokedexPage />} />
-        <Route path="/:pokemonId" element={<PokemonPage />} />
+        <Route path="/pokedex/:pokemonId" element={<PokemonPage />} />
 
         {/* =============================================================== */}
       </Routes>
