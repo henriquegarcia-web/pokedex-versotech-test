@@ -3,9 +3,11 @@ import { MdCatchingPokemon } from 'react-icons/md'
 
 import { pokemonData } from '@/data/mockPokemon'
 
-interface IPokemonCard {}
+interface IPokemonCard {
+  pokemonData: any
+}
 
-const PokemonCard = ({}: IPokemonCard) => {
+const PokemonCard = ({ pokemonData }: IPokemonCard) => {
   return (
     <S.PokemonCard>
       <S.PokemonCardHeader>

@@ -72,7 +72,11 @@ export const PokedexMainFilters = styled.div`
 
 export const PokedexMainList = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   width: calc(100% - ${pokedexFiltersWidth});
+
+  /* border: 1px solid red; */
 `
 
 // ======================================== POKEDEX SEARCH INPUT

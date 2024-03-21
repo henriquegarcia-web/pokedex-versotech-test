@@ -71,7 +71,9 @@ const PokedexPage = () => {
         <S.PokedexMainWrapper>
           <S.PokedexMainFilters></S.PokedexMainFilters>
           <S.PokedexMainList>
-            <PokemonCard />
+            {pokemonList?.map((pokemon: any) => (
+              <PokemonCard key={pokemon.name} pokemonData={pokemon} />
+            ))}
           </S.PokedexMainList>
         </S.PokedexMainWrapper>
       </S.PokedexMain>
