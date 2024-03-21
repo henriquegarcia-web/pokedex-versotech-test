@@ -7,7 +7,15 @@ export const responsiveDesktop = '1000px'
 export const responsiveTablet = '760px'
 export const responsiveMobile = '480px'
 
+export const pageWrapperLimit = '800px'
+
 const GlobalStyle = createGlobalStyle`
+
+  @font-face {
+    font-family: 'pokefont';
+    src: url('/fonts/airstrike.ttf') format('truetype');
+  }
+
   :root {
     font-size: 14px;
 
