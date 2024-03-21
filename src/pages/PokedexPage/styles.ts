@@ -8,7 +8,7 @@ export const PokedexPage = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 20px;
+  row-gap: 25px;
   width: 100%;
   height: fit-content;
   min-height: 100vh;
@@ -58,7 +58,7 @@ export const PokedexMain = styled.div`
 
 export const PokedexMainWrapper = styled.div`
   display: flex;
-  column-gap: 10px;
+  column-gap: 20px;
   width: 100%;
   max-width: ${pageWrapperLimit};
 `

@@ -1,6 +1,8 @@
 import * as S from './styles'
 import { MdCatchingPokemon } from 'react-icons/md'
 
+import { PokemonCard } from '@/components'
+
 const PokedexPage = () => {
   return (
     <S.PokedexPage>
@@ -16,7 +18,9 @@ const PokedexPage = () => {
       <S.PokedexMain>
         <S.PokedexMainWrapper>
           <S.PokedexMainFilters></S.PokedexMainFilters>
-          <S.PokedexMainList></S.PokedexMainList>
+          <S.PokedexMainList>
+            <PokemonCard />
+          </S.PokedexMainList>
         </S.PokedexMainWrapper>
       </S.PokedexMain>
     </S.PokedexPage>
