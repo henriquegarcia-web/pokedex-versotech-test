@@ -127,24 +127,46 @@ export const PokedexPagination = styled.div`
       background-color: ${Colors.borderHover};
     }
   }
+`
 
-  span {
+export const PokedexPaginationInput = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 30px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  border: 1px solid ${Colors.borderActive};
+
+  input {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 30px;
-    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    padding-left: 6px;
 
     font-size: 15px;
     font-weight: 500;
 
     color: ${Colors.borderActive};
-    border: 1px solid ${Colors.borderActive};
+  }
 
-    svg {
-      font-size: 18px;
-      animation: ${rotate} 1s linear infinite;
-    }
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  svg {
+    font-size: 16px;
+    animation: ${rotate} 1s linear infinite;
+
+    color: ${Colors.borderActive};
   }
 `

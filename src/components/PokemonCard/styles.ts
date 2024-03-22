@@ -6,6 +6,7 @@ export const PokemonCard = styled.div`
   flex-direction: column;
   row-gap: 10px;
   width: calc((100% / 4) - (30px / 4));
+  min-height: 130px;
   padding: 15px;
   border-radius: 8px;
   overflow: hidden;

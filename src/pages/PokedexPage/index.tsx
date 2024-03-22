@@ -128,6 +128,8 @@ const PokedexPagination = ({
 }: IPokedexPagination) => {
   const pageIndex = Math.floor(currentOffset / 12) + 1
 
+  const [pagination, setPagination] = useState<string>(pageIndex.toString())
+
   const handleNextPage = () => {
     setCurrentOffset(currentOffset + 12)
     fetchPokemonList(12, currentOffset + 12)
@@ -140,6 +142,30 @@ const PokedexPagination = ({
     fetchPokemonList(12, currentOffset - 12)
   }
 
+  const handleChangeIndexPage = (index: string) => {
+    setPagination(index)
+  }
+
+  const handleBlurIndexPage = () => {
+    const pageNumber = parseInt(pagination, 10)
+
+    if (
+      !isNaN(pageNumber) &&
+      pageNumber >= 1 &&
+      pageNumber <= Math.floor(1300 / 12)
+    ) {
+      const newOffset = (pageNumber - 1) * 12
+      setCurrentOffset(newOffset)
+      fetchPokemonList(12, newOffset)
+    } else {
+      setPagination(pageIndex.toString())
+    }
+  }
+
+  useEffect(() => {
+    setPagination((Math.floor(currentOffset / 12) + 1).toString())
+  }, [currentOffset])
+
   return (
     <S.PokedexPagination>
       <button
@@ -148,7 +174,20 @@ const PokedexPagination = ({
       >
         <MdChevronLeft />
       </button>
-      <span>{loading ? <AiOutlineLoading3Quarters /> : <>{pageIndex}</>}</span>
+      <S.PokedexPaginationInput>
+        {loading ? (
+          <AiOutlineLoading3Quarters />
+        ) : (
+          <input
+            type="number"
+            min={1}
+            max={Math.floor(1300 / 12)}
+            value={pagination}
+            onChange={(e) => handleChangeIndexPage(e.target.value)}
+            onBlur={handleBlurIndexPage}
+          />
+        )}
+      </S.PokedexPaginationInput>
       <button onClick={handleNextPage} disabled={loading}>
         <MdChevronRight />
       </button>
