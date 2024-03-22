@@ -1,6 +1,15 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { pageWrapperLimit, rotate } from '@/utils/styles/globals'
+import { pageWrapperLimit } from '@/utils/styles/globals'
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
 
 export const PokedexPage = styled.main`
   display: flex;

@@ -13,7 +13,7 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
   const navigate = useNavigate()
 
   return (
-    <S.PokemonCard onClick={() => navigate(`/pokedex/${pokemonData.name}`)}>
+    <S.PokemonCard onClick={() => navigate(`/pokedex/${pokemonData.id}`)}>
       <S.PokemonCardHeader>
         <b>{pokemonData.name}</b>
         <p>#{pokemonData.id}</p>

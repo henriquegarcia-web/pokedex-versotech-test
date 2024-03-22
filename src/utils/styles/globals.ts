@@ -68,12 +68,3 @@ export const View = styled.section`
   width: 100%;
   height: fit-content;
 `
-
-export const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`

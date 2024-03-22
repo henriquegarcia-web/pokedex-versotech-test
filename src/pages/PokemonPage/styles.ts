@@ -1,6 +1,15 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { pageWrapperLimit, rotate } from '@/utils/styles/globals'
+import { pageWrapperLimit } from '@/utils/styles/globals'
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`
 
 export const PokemonPage = styled.main`
   display: flex;
@@ -40,7 +49,7 @@ export const PokemonInfoHeader = styled.div`
     height: 30px;
     cursor: pointer;
     transition: 0.3s;
-    opacity: 0.5;
+    opacity: 0.7;
 
     svg {
       font-size: 22px;
@@ -49,10 +58,15 @@ export const PokemonInfoHeader = styled.div`
     }
 
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     background-color: transparent;
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
 
   span {

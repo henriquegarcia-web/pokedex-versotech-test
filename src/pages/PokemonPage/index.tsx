@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import * as S from './styles'
-import { HiArrowLeft } from 'react-icons/hi'
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 import { Header, PokemonStat, PokemonType } from '@/components'
@@ -112,19 +112,39 @@ const PokemonPage = () => {
     fetchPokemonInfos()
   }, [pokemonId])
 
+  const pageIndex = useMemo(() => {
+    if (!pokemonId) return 1
+    return parseInt(pokemonId)
+  }, [pokemonId])
+
+  const handlePageNavigation = (isNext: boolean) => {
+    const nextPageIndex = isNext ? pageIndex + 1 : pageIndex - 1
+    if (nextPageIndex <= 0 || nextPageIndex > 1300) return
+
+    navigate(`/pokedex/${nextPageIndex}`)
+  }
+
   return (
     <S.PokemonPage>
       <Header />
       <S.PokemonMain>
         <S.PokemonMainWrapper>
           <S.PokemonInfoHeader>
-            <button onClick={() => navigate('/pokedex')}>
+            <button
+              onClick={() => handlePageNavigation(false)}
+              disabled={pageIndex - 1 <= 0}
+            >
               <HiArrowLeft />
             </button>
             <span>
               {pokemonInfo?.id} / <b>1300</b>
             </span>
-            <div></div>
+            <button
+              onClick={() => handlePageNavigation(true)}
+              disabled={pageIndex + 1 >= 1300}
+            >
+              <HiArrowRight />
+            </button>
           </S.PokemonInfoHeader>
           {pokemonFetching ? (
             <S.PokemonInfoLoading>
