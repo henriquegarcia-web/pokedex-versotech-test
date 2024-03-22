@@ -85,6 +85,7 @@ const PokedexPage = () => {
               setCurrentOffset={setCurrentOffset}
               fetchPokemonList={fetchPokemonList}
               loading={pokemonsFetching}
+              totalPokemonsCount={totalCount}
             />
           </S.PokedexMainListFooter>
         </S.PokedexMainWrapper>

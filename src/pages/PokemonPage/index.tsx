@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import * as S from './styles'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
@@ -25,6 +26,10 @@ const PokemonPage = () => {
   const navigate = useNavigate()
   const params = useParams()
   const { pokemonId } = params
+
+  const { totalCount } = useSelector(
+    (rootReducer) => rootReducer.pokemonsReducer
+  )
 
   const [pokemonFetching, setPokemonFetching] = useState(false)
   const [pokemonInfo, setPokemonInfo] = useState<IPokemonInfo | null>(null)
@@ -129,7 +134,7 @@ const PokemonPage = () => {
 
   const handlePageNavigation = (isNext: boolean) => {
     const nextPageIndex = isNext ? pageIndex + 1 : pageIndex - 1
-    if (nextPageIndex <= 0 || nextPageIndex > 1300) return
+    if (nextPageIndex <= 0 || nextPageIndex > totalCount) return
 
     navigate(`/pokedex/${nextPageIndex}`)
   }
@@ -147,11 +152,11 @@ const PokemonPage = () => {
               <HiArrowLeft />
             </button>
             <span>
-              {pokemonInfo?.id} / <b>1300</b>
+              {pokemonInfo?.id} / <b>{totalCount}</b>
             </span>
             <button
               onClick={() => handlePageNavigation(true)}
-              disabled={pageIndex + 1 >= 1300}
+              disabled={pageIndex + 1 >= totalCount}
             >
               <HiArrowRight />
             </button>

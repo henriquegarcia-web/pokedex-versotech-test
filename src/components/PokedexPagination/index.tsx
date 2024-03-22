@@ -9,13 +9,15 @@ interface IPokedexPagination {
   setCurrentOffset: any
   fetchPokemonList: (limit: number, offset: number) => void
   loading: boolean
+  totalPokemonsCount: number
 }
 
 const PokedexPagination = ({
   currentOffset,
   setCurrentOffset,
   fetchPokemonList,
-  loading
+  loading,
+  totalPokemonsCount
 }: IPokedexPagination) => {
   const pageIndex = Math.floor(currentOffset / 12) + 1
 
@@ -43,7 +45,7 @@ const PokedexPagination = ({
     if (
       !isNaN(pageNumber) &&
       pageNumber >= 1 &&
-      pageNumber <= Math.floor(1300 / 12)
+      pageNumber <= Math.floor(totalPokemonsCount / 12)
     ) {
       const newOffset = (pageNumber - 1) * 12
       setCurrentOffset(newOffset)
@@ -72,7 +74,7 @@ const PokedexPagination = ({
           <input
             type="number"
             min={1}
-            max={Math.floor(1300 / 12)}
+            max={Math.floor(totalPokemonsCount / 12)}
             value={pagination}
             onChange={(e) => handleChangeIndexPage(e.target.value)}
             onBlur={handleBlurIndexPage}
