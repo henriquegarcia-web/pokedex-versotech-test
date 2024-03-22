@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
+import {
+  responsiveDesktop,
+  responsiveMobile,
+  responsiveTablet
+} from '@/utils/styles/globals'
 
 export const PokemonCard = styled.div`
   display: flex;
@@ -26,6 +31,18 @@ export const PokemonCard = styled.div`
     svg {
       font-size: 130px;
     }
+  }
+
+  @media screen and (max-width: ${responsiveDesktop}) {
+    width: calc((100% / 3) - (20px / 3));
+  }
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    width: calc((100% / 2) - (10px / 2));
+  }
+
+  @media screen and (max-width: ${responsiveMobile}) {
+    width: 100%;
   }
 `
 

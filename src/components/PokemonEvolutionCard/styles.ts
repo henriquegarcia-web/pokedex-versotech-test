@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
+import { responsiveMobile } from '@/utils/styles/globals'
 
 export const PokemonEvolutionCard = styled.div`
   position: relative;
@@ -38,6 +39,18 @@ export const PokemonEvolutionCardName = styled.h4`
   text-transform: capitalize;
 
   color: ${Colors.textPrimary};
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+  max-height: 16px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  @media screen and (max-width: ${responsiveMobile}) {
+    font-size: 12px;
+  }
 `
 
 export const PokemonEvolutionCardType = styled.div`

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { pageWrapperLimit } from '@/utils/styles/globals'
+import { pageWrapperLimit, responsiveTablet } from '@/utils/styles/globals'
 
 const rotate = keyframes`
   from {
@@ -102,6 +102,11 @@ export const PokemonInfoLoading = styled.div`
 export const PokemonInfoWrapper = styled.div`
   display: flex;
   column-gap: 30px;
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    flex-direction: column;
+    row-gap: 30px;
+  }
 `
 
 // --------------------- INFOS PRIMARY
@@ -116,6 +121,10 @@ export const PokemonInfoPrimary = styled.div`
   overflow: hidden;
 
   border: 2px solid ${Colors.pokedexGray};
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    width: 100%;
+  }
 `
 
 export const PokemonInfoPrimaryHeader = styled.h1`
@@ -141,9 +150,16 @@ export const PokemonInfoPrimaryWrapper = styled.div`
 
 export const PokemonInfoImage = styled.div`
   display: flex;
+  justify-content: center;
 
   img {
     width: 100%;
+  }
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    img {
+      width: 70%;
+    }
   }
 `
 
@@ -179,6 +195,10 @@ export const PokemonInfoSecondary = styled.div`
   overflow: hidden;
 
   border: 2px solid ${Colors.pokedexGray};
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    width: 100%;
+  }
 `
 
 export const PokemonInfoSecondaryHeader = styled.div`

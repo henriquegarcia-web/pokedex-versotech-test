@@ -61,6 +61,7 @@ const PokedexPage = () => {
 
   useEffect(() => {
     fetchPokemonList()
+    setCurrentOffset(0)
   }, [])
 
   return (

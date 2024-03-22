@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
+import { responsiveMobile } from '@/utils/styles/globals'
 
 export const PokedexHeaderSearch = styled.form`
   display: flex;
@@ -43,5 +44,9 @@ export const PokedexSearchButton = styled.button`
   &:disabled {
     pointer-events: none;
     background-color: ${Colors.buttonDisabled};
+  }
+
+  @media screen and (max-width: ${responsiveMobile}) {
+    width: 70px;
   }
 `

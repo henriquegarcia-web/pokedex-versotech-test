@@ -94,14 +94,19 @@ const PokemonPage = () => {
         weight: data.weight,
         types: data.types,
         stats: data.stats,
-        description: speciesData.flavor_text_entries[4].flavor_text,
-        color: speciesData.color.name,
-        category: speciesData.genera[7].genus.replace(' Pokémon', ''),
-        generation: speciesData.generation.name.replace('generation-', ''),
-        shape: speciesData.shape.name,
+        description:
+          speciesData?.flavor_text_entries[4]?.flavor_text || 'No registry',
+        color: speciesData?.color?.name || 'No registry',
+        category:
+          speciesData?.genera[7]?.genus?.replace(' Pokémon', '') ||
+          'No registry',
+        generation:
+          speciesData?.generation?.name?.replace('generation-', '') ||
+          'No registry',
+        shape: speciesData?.shape?.name || 'No registry',
         evolutions: evolutionChainData,
-        is_legendary: speciesData.is_legendary,
-        is_mythical: speciesData.is_mythical
+        is_legendary: speciesData?.is_legendary || false,
+        is_mythical: speciesData?.is_mythical || false
       }
 
       setPokemonInfo(pokemonInfo)
