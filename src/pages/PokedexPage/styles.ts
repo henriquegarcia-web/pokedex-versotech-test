@@ -109,8 +109,8 @@ export const PokedexPagination = styled.div`
     cursor: pointer;
     transition: 0.3s;
 
-    border: 1px solid ${Colors.pokedexBlue};
-    background-color: ${Colors.pokedexBlue};
+    border: 1px solid ${Colors.button};
+    background-color: ${Colors.button};
 
     svg {
       font-size: 22px;
@@ -119,7 +119,8 @@ export const PokedexPagination = styled.div`
     }
 
     &:hover {
-      opacity: 0.8;
+      border: 1px solid ${Colors.buttonHover};
+      background-color: ${Colors.buttonHover};
     }
 
     &:disabled {

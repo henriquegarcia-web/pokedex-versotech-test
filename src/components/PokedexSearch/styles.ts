@@ -34,9 +34,9 @@ export const PokedexSearchButton = styled.button`
   font-weight: 500;
 
   color: white;
-  background-color: ${Colors.pokedexBlue};
+  background-color: ${Colors.button};
 
   &:hover {
-    background-color: ${Colors.pokedexBlue};
+    background-color: ${Colors.buttonHover};
   }
 `
