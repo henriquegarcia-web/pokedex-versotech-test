@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, keyframes } from 'styled-components'
 import Colors from './colors'
 
 // import Colors from './colors'
@@ -67,4 +67,13 @@ export const View = styled.section`
   display: flex;
   width: 100%;
   height: fit-content;
+`
+
+export const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 `

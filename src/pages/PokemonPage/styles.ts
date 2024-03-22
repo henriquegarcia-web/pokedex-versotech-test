@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { pageWrapperLimit } from '@/utils/styles/globals'
+import { pageWrapperLimit, rotate } from '@/utils/styles/globals'
 
 export const PokemonPage = styled.main`
   display: flex;
@@ -67,18 +67,56 @@ export const PokemonInfoHeader = styled.div`
   }
 `
 
+export const PokemonInfoLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  svg {
+    font-size: 40px;
+
+    animation: ${rotate} 1s linear infinite;
+    color: ${Colors.borderActive};
+  }
+`
+
 export const PokemonInfoWrapper = styled.div`
   display: flex;
-  column-gap: 20px;
+  column-gap: 30px;
 `
 
 export const PokemonInfoPrimary = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 25px;
-  width: 45%;
+  width: 50%;
+  height: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
 
-  border: 1px solid red;
+  border: 2px solid ${Colors.pokedexGray};
+`
+
+export const PokemonInfoPrimaryHeader = styled.h1`
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  color: ${Colors.textSecondary};
+  background-color: ${Colors.pokedexGray};
+`
+
+export const PokemonInfoPrimaryWrapper = styled.div`
+  display: flex;
+  padding: 0 15px 15px 15px;
+  flex-direction: column;
+  row-gap: 25px;
 `
 
 export const PokemonInfoImage = styled.div`
@@ -92,41 +130,6 @@ export const PokemonInfoImage = styled.div`
 export const PokemonInfoDetails = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-export const PokemonInfoDetailsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px 10px;
-  width: 100%;
-`
-
-export const PokemonInfoDetail = styled.div`
-  display: flex;
-  column-gap: 5px;
-  width: calc(50% - (10px / 2));
-  padding: 6px 8px;
-  border-radius: 8px;
-  transition: 0.3s;
-
-  font-size: 13px;
-
-  b {
-    font-weight: 600;
-  }
-
-  p {
-    font-weight: 400;
-
-    color: ${Colors.textTertiary};
-  }
-
-  color: ${Colors.textPrimary};
-  border: 1px solid ${Colors.borderDefault};
-
-  &:hover {
-    border: 1px solid ${Colors.borderHover};
-  }
 `
 
 export const PokemonInfoTitle = styled.h3`
@@ -165,26 +168,33 @@ export const PokemonInfoSecondary = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 25px;
-  width: 55%;
+  width: 50%;
+  height: fit-content;
+  border-radius: 10px;
+  overflow: hidden;
 
-  border: 1px solid red;
+  border: 2px solid ${Colors.pokedexGray};
 `
 
-export const PokemonInfoMain = styled.div`
+export const PokemonInfoSecondaryHeader = styled.div`
   display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  width: 100%;
-`
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
 
-export const PokemonInfoName = styled.h1`
-  display: flex;
-
-  font-size: 36px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 600;
   text-transform: capitalize;
 
-  color: ${Colors.pokedexRed};
+  color: ${Colors.textSecondary};
+  background-color: ${Colors.pokedexGray};
+`
+
+export const PokemonInfoSecondaryWrapper = styled.div`
+  display: flex;
+  padding: 0 15px 15px 15px;
+  flex-direction: column;
+  row-gap: 25px;
 `
 
 export const PokemonInfoDescription = styled.p`
@@ -206,17 +216,36 @@ export const PokemonInfoEvolutionsWrapper = styled.div`
   gap: 15px;
 `
 
-export const PokemonInfoEvolution = styled.div`
+// =============================== POKEMON MAIN INFOS
+
+export const PokemonMainInfos = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+`
+
+export const PokemonMainInfoWrapper = styled.div`
+  display: flex;
+  column-gap: 5px;
+  width: calc(50% - (10px / 2));
+  padding: 6px 8px;
   border-radius: 8px;
   transition: 0.3s;
 
-  img {
-    width: 100px;
+  font-size: 13px;
+
+  b {
+    font-weight: 600;
   }
 
+  p {
+    font-weight: 400;
+
+    color: ${Colors.textTertiary};
+  }
+
+  color: ${Colors.textPrimary};
   border: 1px solid ${Colors.borderDefault};
 
   &:hover {
@@ -224,10 +253,39 @@ export const PokemonInfoEvolution = styled.div`
   }
 `
 
-export const PokemonInfoEvolutionName = styled.h4`
+// =============================== POKEMON EVOLUTION CARD
+
+export const PokemonEvolutionCard = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  width: calc((100% / 3) - (30px / 3));
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  border: 1px solid ${Colors.borderDefault};
+
+  &:hover {
+    border: 1px solid ${Colors.borderHover};
+  }
+`
+export const PokemonEvolutionCardImage = styled.img`
+  width: 70px;
 `
 
-export const PokemonInfoEvolutionType = styled.div`
+export const PokemonEvolutionCardName = styled.h4`
+  display: flex;
+
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  color: ${Colors.textPrimary};
+`
+
+export const PokemonEvolutionCardType = styled.div`
   display: flex;
 `

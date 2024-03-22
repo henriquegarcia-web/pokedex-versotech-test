@@ -9,7 +9,7 @@ export const PokemonType = styled.div<IPokemonType>`
   display: flex;
   align-items: center;
   column-gap: 2px;
-  padding: ${({ minified }) => (minified ? '2px' : '2px 8px 2px 2px')};
+  padding: ${({ minified }) => (minified ? '0px' : '2px 8px 2px 2px')};
   border-radius: 50px;
 
   font-size: 12px;

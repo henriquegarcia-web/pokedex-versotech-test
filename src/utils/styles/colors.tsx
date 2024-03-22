@@ -7,6 +7,7 @@ const Colors = {
   pokedexBlue: '#1e99eb',
   pokedexWhite: '#dedede',
   pokedexBlack: '#232323',
+  pokedexGray: '#3a3a3a',
 
   button: '#2aaafe',
   buttonHover: '#1e99eb',
