@@ -18,7 +18,7 @@ const PokedexPage = () => {
   const [pokemonsFetching, setPokemonsFetching] = useState(false)
   const [currentOffset, setCurrentOffset] = useState(offset)
 
-  const fetchPokemonData = async (limit = 12, offset = 0) => {
+  const fetchPokemonList = async (limit = 12, offset = 0) => {
     try {
       setPokemonsFetching(true)
 
@@ -45,7 +45,7 @@ const PokedexPage = () => {
         payload: pokemonData
       })
     } catch (error) {
-      console.error('Error fetching Pokémon data:', error)
+      console.error('Error fetching Pokémon list:', error)
 
       dispatch({
         type: 'FETCH_POKEMONS_LIST',
@@ -57,12 +57,8 @@ const PokedexPage = () => {
   }
 
   useEffect(() => {
-    fetchPokemonData()
+    fetchPokemonList()
   }, [])
-
-  // useEffect(() => {
-  //   console.log(offset, currentOffset)
-  // }, [offset, currentOffset])
 
   return (
     <S.PokedexPage>
@@ -83,7 +79,7 @@ const PokedexPage = () => {
             <PokedexPagination
               currentOffset={currentOffset}
               setCurrentOffset={setCurrentOffset}
-              fetchPokemonData={fetchPokemonData}
+              fetchPokemonList={fetchPokemonList}
               loading={pokemonsFetching}
             />
           </S.PokedexMainListFooter>
@@ -120,28 +116,28 @@ const PokedexPageRange = ({ currentOffset }: IPokedexPageRange) => {
 interface IPokedexPagination {
   currentOffset: number
   setCurrentOffset: any
-  fetchPokemonData: (limit: number, offset: number) => void
+  fetchPokemonList: (limit: number, offset: number) => void
   loading: boolean
 }
 
 const PokedexPagination = ({
   currentOffset,
   setCurrentOffset,
-  fetchPokemonData,
+  fetchPokemonList,
   loading
 }: IPokedexPagination) => {
   const pageIndex = Math.floor(currentOffset / 12) + 1
 
   const handleNextPage = () => {
     setCurrentOffset(currentOffset + 12)
-    fetchPokemonData(12, currentOffset + 12)
+    fetchPokemonList(12, currentOffset + 12)
   }
 
   const handlePreviousPage = () => {
     if (pageIndex === 1) return
 
     setCurrentOffset(currentOffset - 12)
-    fetchPokemonData(12, currentOffset - 12)
+    fetchPokemonList(12, currentOffset - 12)
   }
 
   return (

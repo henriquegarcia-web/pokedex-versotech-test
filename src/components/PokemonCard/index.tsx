@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import * as S from './styles'
 import { MdCatchingPokemon } from 'react-icons/md'
 
@@ -6,8 +8,10 @@ interface IPokemonCard {
 }
 
 const PokemonCard = ({ pokemonData }: IPokemonCard) => {
+  const navigate = useNavigate()
+
   return (
-    <S.PokemonCard>
+    <S.PokemonCard onClick={() => navigate(`/pokedex/${pokemonData.name}`)}>
       <S.PokemonCardHeader>
         <b>{pokemonData.name}</b>
         <p>#{pokemonData.id}</p>
