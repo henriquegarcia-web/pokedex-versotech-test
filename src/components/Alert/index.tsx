@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from './styles'
 
+import { IRootState } from '@/redux/root-reducer'
+
 const Alert = () => {
   const dispatch = useDispatch()
 
-  const { isVisible, type, message } = useSelector(
-    (rootReducer) => rootReducer.alertReducer
+  const { isVisible, message } = useSelector(
+    (rootReducer: IRootState) => rootReducer.alertReducer
   )
 
   const handleCloseAlert = () => {

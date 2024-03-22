@@ -1,18 +1,6 @@
-export interface Pokemon {
-  id: number
-  name: string
-  // outras propriedades dos Pokémon, se houver
-}
+import { IPokemonAction, IPokemonState } from './types'
 
-export interface PokemonState {
-  pokemonList: Pokemon[]
-  totalCount: number
-  offset: number
-  nextPage: string | null
-  previousPage: string | null
-}
-
-export const pokemonsInitialState: PokemonState = {
+export const pokemonsInitialState: IPokemonState = {
   pokemonList: [],
   totalCount: 0,
   offset: 0,
@@ -20,30 +8,10 @@ export const pokemonsInitialState: PokemonState = {
   previousPage: null
 }
 
-interface FetchPokemonSuccessAction {
-  type: 'FETCH_POKEMONS_LIST' | 'UPDATE_OFFSET'
-  payload: {
-    pokemonList: Pokemon[]
-    totalCount: number
-    offset: number
-    nextPage: string | null
-    previousPage: string | null
-  }
-}
-
-interface UpdateOffsetAction {
-  type: 'UPDATE_OFFSET'
-  payload: {
-    offset: number
-  }
-}
-
-type PokemonAction = FetchPokemonSuccessAction | UpdateOffsetAction
-
 const pokemonsReducer = (
-  state: PokemonState = pokemonsInitialState,
-  action: PokemonAction
-): PokemonState => {
+  state: IPokemonState = pokemonsInitialState,
+  action: IPokemonAction
+): IPokemonState => {
   switch (action.type) {
     case 'FETCH_POKEMONS_LIST':
       return {

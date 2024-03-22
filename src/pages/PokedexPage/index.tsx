@@ -9,14 +9,17 @@ import {
   PokedexPagination,
   PokemonCard
 } from '@/components'
+
+import { IRootState } from '@/redux/root-reducer'
 import { pokemonsInitialState } from '@/redux/pokemons/reducer'
 import api from '@/api'
 
 const PokedexPage = () => {
   const dispatch = useDispatch()
 
-  const { pokemonList, totalCount, offset, nextPage, previousPage } =
-    useSelector((rootReducer) => rootReducer.pokemonsReducer)
+  const { pokemonList, totalCount, offset } = useSelector(
+    (rootReducer: IRootState) => rootReducer.pokemonsReducer
+  )
 
   const [pokemonsFetching, setPokemonsFetching] = useState(false)
   const [currentOffset, setCurrentOffset] = useState(offset)

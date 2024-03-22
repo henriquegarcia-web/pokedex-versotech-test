@@ -1,21 +1,21 @@
-export interface CustomAlertState {
+export interface IAlertState {
   isVisible: boolean
   type: string
   message: string
 }
 
-export enum CustomAlertActionTypes {
+export enum EnumAlertActionTypes {
   SHOW_ALERT = 'SHOW_ALERT',
   HIDE_ALERT = 'HIDE_ALERT'
 }
 
-interface ShowCustomAlertAction {
-  type: CustomAlertActionTypes.SHOW_ALERT
+interface IShowAlertAction {
+  type: EnumAlertActionTypes.SHOW_ALERT
   payload: { type: string; message: string }
 }
 
-interface HideCustomAlertAction {
-  type: CustomAlertActionTypes.HIDE_ALERT
+interface IHideAlertAction {
+  type: EnumAlertActionTypes.HIDE_ALERT
 }
 
-export type CustomAlertAction = ShowCustomAlertAction | HideCustomAlertAction
+export type AlertAction = IShowAlertAction | IHideAlertAction

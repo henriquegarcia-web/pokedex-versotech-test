@@ -12,7 +12,9 @@ import {
   PokemonStat,
   PokemonType
 } from '@/components'
+
 import api from '@/api'
+import { IRootState } from '@/redux/root-reducer'
 
 import {
   IEvolution,
@@ -28,7 +30,7 @@ const PokemonPage = () => {
   const { pokemonId } = params
 
   const { totalCount } = useSelector(
-    (rootReducer) => rootReducer.pokemonsReducer
+    (rootReducer: IRootState) => rootReducer.pokemonsReducer
   )
 
   const [pokemonFetching, setPokemonFetching] = useState(false)
