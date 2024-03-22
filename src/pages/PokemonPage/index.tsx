@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import * as S from './styles'
 import { HiArrowLeft } from 'react-icons/hi'
 
-import { Header, PokemonType } from '@/components'
+import { Header, PokemonStat, PokemonType } from '@/components'
 import api from '@/api'
 
 import {
@@ -22,41 +22,43 @@ const PokemonPage = () => {
   const [pokemonFetching, setPokemonFetching] = useState(false)
   const [pokemonInfo, setPokemonInfo] = useState<IPokemonInfo | null>(null)
 
-  const formatEvolution = (evolution: IEvolution): IFormattedEvolution => {
-    const evolutionDetails = evolution.evolution_details
-      ? evolution.evolution_details[0]
-      : null
+  const formatEvolution = async (
+    evolution: IEvolution
+  ): Promise<IFormattedEvolution> => {
+    const response = await api.get(`pokemon/${evolution.species?.name}`)
+    const data = response.data
+
     return {
-      speciesName: evolution.species?.name,
-      minLevel: evolutionDetails?.min_level || null,
-      triggerName: evolutionDetails?.trigger?.name || null
+      name: evolution.species?.name,
+      image: data.sprites.other.home.front_default,
+      types: data.types
     }
   }
 
-  const traverseEvolutionChain = (
+  const traverseEvolutionChain = async (
     chain: IEvolution[] | IEvolution,
     formattedEvolutions: IFormattedEvolution[]
-  ): void => {
+  ): Promise<void> => {
     if (Array.isArray(chain)) {
-      chain.forEach((evolution) => {
-        formattedEvolutions.push(formatEvolution(evolution))
+      chain.forEach(async (evolution) => {
+        formattedEvolutions.push(await formatEvolution(evolution))
         if (evolution.evolves_to?.length > 0) {
           traverseEvolutionChain(evolution.evolves_to, formattedEvolutions)
         }
       })
     } else {
-      formattedEvolutions.push(formatEvolution(chain))
+      formattedEvolutions.push(await formatEvolution(chain))
       if (chain.evolves_to?.length > 0) {
         traverseEvolutionChain(chain.evolves_to, formattedEvolutions)
       }
     }
   }
 
-  const formatEvolutions = (
+  const formatEvolutions = async (
     evolutionChain: IEvolution[] | IEvolution
-  ): IFormattedEvolution[] => {
+  ): Promise<IFormattedEvolution[]> => {
     const formattedEvolutions: IFormattedEvolution[] = []
-    traverseEvolutionChain(evolutionChain, formattedEvolutions)
+    await traverseEvolutionChain(evolutionChain, formattedEvolutions)
     return formattedEvolutions
   }
 
@@ -73,7 +75,7 @@ const PokemonPage = () => {
       const evolutionChainResponse = await api.get(
         speciesData.evolution_chain.url
       )
-      const evolutionChainData: IFormattedEvolution[] = formatEvolutions(
+      const evolutionChainData: IFormattedEvolution[] = await formatEvolutions(
         evolutionChainResponse.data.chain
       )
 
@@ -85,18 +87,17 @@ const PokemonPage = () => {
         weight: data.weight,
         types: data.types,
         stats: data.stats,
-        details: {
-          color: speciesData.color.name,
-          category: speciesData.genera[7].genus.replace(' Pokémon', ''),
-          generation: speciesData.generation.name.replace('generation-', ''),
-          shape: speciesData.shape.name,
-          evolutions: evolutionChainData,
-          is_legendary: speciesData.is_legendary,
-          is_mythical: speciesData.is_mythical
-        }
+        description: speciesData.flavor_text_entries[4].flavor_text,
+        color: speciesData.color.name,
+        category: speciesData.genera[7].genus.replace(' Pokémon', ''),
+        generation: speciesData.generation.name.replace('generation-', ''),
+        shape: speciesData.shape.name,
+        evolutions: evolutionChainData,
+        is_legendary: speciesData.is_legendary,
+        is_mythical: speciesData.is_mythical
       }
 
-      console.log(pokemonInfo)
+      console.log(evolutionChainData)
       setPokemonInfo(pokemonInfo)
     } catch (error) {
       console.error('Error fetching Pokémon infos:', error)
@@ -129,32 +130,35 @@ const PokemonPage = () => {
               <S.PokemonInfoImage>
                 <img src={pokemonInfo?.image} alt="" />
               </S.PokemonInfoImage>
-              <S.PokemonInfoDetailsWrapper>
-                <S.PokemonInfoDetail>
-                  <b>Category:</b>
-                  <p>{pokemonInfo?.details?.category}</p>
-                </S.PokemonInfoDetail>
-                <S.PokemonInfoDetail>
-                  <b>Generation:</b>
-                  <p>{pokemonInfo?.details?.generation}</p>
-                </S.PokemonInfoDetail>
-                <S.PokemonInfoDetail>
-                  <b>Height:</b>
-                  <p>{pokemonInfo?.height}</p>
-                </S.PokemonInfoDetail>
-                <S.PokemonInfoDetail>
-                  <b>Weight:</b>
-                  <p>{pokemonInfo?.weight}</p>
-                </S.PokemonInfoDetail>
-                <S.PokemonInfoDetail>
-                  <b>Shape:</b>
-                  <p>{pokemonInfo?.details?.shape}</p>
-                </S.PokemonInfoDetail>
-                <S.PokemonInfoDetail>
-                  <b>Gender:</b>
-                  <p>{pokemonInfo?.height}</p>
-                </S.PokemonInfoDetail>
-              </S.PokemonInfoDetailsWrapper>
+              <S.PokemonInfoDetails>
+                <S.PokemonInfoTitle>Main Infos</S.PokemonInfoTitle>
+                <S.PokemonInfoDetailsWrapper>
+                  <S.PokemonInfoDetail>
+                    <b>Category:</b>
+                    <p>{pokemonInfo?.category}</p>
+                  </S.PokemonInfoDetail>
+                  <S.PokemonInfoDetail>
+                    <b>Generation:</b>
+                    <p>{pokemonInfo?.generation}</p>
+                  </S.PokemonInfoDetail>
+                  <S.PokemonInfoDetail>
+                    <b>Height:</b>
+                    <p>{pokemonInfo?.height}</p>
+                  </S.PokemonInfoDetail>
+                  <S.PokemonInfoDetail>
+                    <b>Weight:</b>
+                    <p>{pokemonInfo?.weight}</p>
+                  </S.PokemonInfoDetail>
+                  <S.PokemonInfoDetail>
+                    <b>Shape:</b>
+                    <p>{pokemonInfo?.shape}</p>
+                  </S.PokemonInfoDetail>
+                  <S.PokemonInfoDetail>
+                    <b>Gender:</b>
+                    <p>{pokemonInfo?.height}</p>
+                  </S.PokemonInfoDetail>
+                </S.PokemonInfoDetailsWrapper>
+              </S.PokemonInfoDetails>
               <S.PokemonInfoType>
                 <S.PokemonInfoTitle>Type:</S.PokemonInfoTitle>
                 <S.PokemonInfoTypeWrapper>
@@ -169,17 +173,45 @@ const PokemonPage = () => {
                 </S.PokemonInfoTitle>
                 <S.PokemonInfoStatusWrapper>
                   {pokemonInfo?.stats?.map((stat: IStatType) => (
-                    <S.PokemonStat key={stat.stat.name}>
-                      <S.PokemonStatLabel>{stat.stat.name}</S.PokemonStatLabel>
-                      <S.PokemonStatBar>
-                        <S.PokemonStatFill width={stat.base_stat} />
-                      </S.PokemonStatBar>
-                    </S.PokemonStat>
+                    <PokemonStat key={stat.stat.name} stat={stat} />
                   ))}
                 </S.PokemonInfoStatusWrapper>
               </S.PokemonInfoStatus>
             </S.PokemonInfoPrimary>
-            <S.PokemonInfoSecondary></S.PokemonInfoSecondary>
+            <S.PokemonInfoSecondary>
+              <S.PokemonInfoMain>
+                <S.PokemonInfoName>{pokemonInfo?.name}</S.PokemonInfoName>
+                <S.PokemonInfoDescription>
+                  {pokemonInfo?.description}
+                </S.PokemonInfoDescription>
+              </S.PokemonInfoMain>
+              <S.PokemonInfoEvolutions>
+                <S.PokemonInfoTitle>Evolutionary Line:</S.PokemonInfoTitle>
+                <S.PokemonInfoEvolutionsWrapper>
+                  {pokemonInfo?.evolutions?.map(
+                    (evolution: IFormattedEvolution) => (
+                      <S.PokemonInfoEvolution
+                        key={`${evolution.name}-evolution`}
+                      >
+                        <img src={evolution.image} alt="" />
+                        <S.PokemonInfoEvolutionName>
+                          {evolution.name}
+                        </S.PokemonInfoEvolutionName>
+                        <S.PokemonInfoEvolutionType>
+                          {evolution?.types?.map((type: IPokemonType) => (
+                            <PokemonType
+                              key={type.slot}
+                              type={type.type.name}
+                              minified
+                            />
+                          ))}
+                        </S.PokemonInfoEvolutionType>
+                      </S.PokemonInfoEvolution>
+                    )
+                  )}
+                </S.PokemonInfoEvolutionsWrapper>
+              </S.PokemonInfoEvolutions>
+            </S.PokemonInfoSecondary>
           </S.PokemonInfoWrapper>
         </S.PokemonMainWrapper>
       </S.PokemonMain>

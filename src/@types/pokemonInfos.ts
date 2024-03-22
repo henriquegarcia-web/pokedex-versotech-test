@@ -33,9 +33,9 @@ export interface IEvolution {
 }
 
 export interface IFormattedEvolution {
-  speciesName: string
-  minLevel: number | null
-  triggerName: string | null
+  name: string
+  image: string
+  types: IPokemonType[]
 }
 
 export interface IPokemonType {
@@ -63,13 +63,12 @@ export interface IPokemonInfo {
   weight: string
   types: IPokemonType[]
   stats: IStatType[]
-  details: {
-    color: string
-    category: string
-    generation: string
-    shape: string
-    evolutions: IFormattedEvolution[]
-    is_legendary: string
-    is_mythical: string
-  }
+  description: string
+  color: string
+  category: string
+  generation: string
+  shape: string
+  evolutions: IFormattedEvolution[]
+  is_legendary: string
+  is_mythical: string
 }

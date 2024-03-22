@@ -89,6 +89,11 @@ export const PokemonInfoImage = styled.div`
   }
 `
 
+export const PokemonInfoDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const PokemonInfoDetailsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -125,6 +130,8 @@ export const PokemonInfoDetail = styled.div`
 `
 
 export const PokemonInfoTitle = styled.h3`
+  margin-bottom: 15px;
+
   font-size: 16px;
   font-weight: 800;
   text-transform: capitalize;
@@ -135,7 +142,6 @@ export const PokemonInfoTitle = styled.h3`
 export const PokemonInfoType = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
 `
 
 export const PokemonInfoTypeWrapper = styled.div`
@@ -147,7 +153,6 @@ export const PokemonInfoTypeWrapper = styled.div`
 export const PokemonInfoStatus = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
 `
 
 export const PokemonInfoStatusWrapper = styled.div`
@@ -158,24 +163,59 @@ export const PokemonInfoStatusWrapper = styled.div`
 
 export const PokemonInfoSecondary = styled.div`
   display: flex;
+  flex-direction: column;
+  row-gap: 25px;
   width: 55%;
 
   border: 1px solid red;
 `
 
-// ====================== STAT
-
-interface IPokemonStatFill {
-  width: number
-}
-
-export const PokemonStat = styled.div`
+export const PokemonInfoMain = styled.div`
   display: flex;
-  align-items: center;
-  column-gap: 10px;
-  padding: 6px 8px;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+`
+
+export const PokemonInfoName = styled.h1`
+  display: flex;
+
+  font-size: 36px;
+  font-weight: 900;
+  text-transform: capitalize;
+
+  color: ${Colors.pokedexRed};
+`
+
+export const PokemonInfoDescription = styled.p`
+  display: flex;
+
+  font-size: 16px;
+  font-weight: 300;
+
+  color: ${Colors.textPrimary};
+`
+
+export const PokemonInfoEvolutions = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const PokemonInfoEvolutionsWrapper = styled.div`
+  display: flex;
+  gap: 15px;
+`
+
+export const PokemonInfoEvolution = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
   border-radius: 8px;
   transition: 0.3s;
+
+  img {
+    width: 100px;
+  }
 
   border: 1px solid ${Colors.borderDefault};
 
@@ -184,32 +224,10 @@ export const PokemonStat = styled.div`
   }
 `
 
-export const PokemonStatLabel = styled.div`
+export const PokemonInfoEvolutionName = styled.h4`
   display: flex;
-  width: 100px;
-
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: capitalize;
-
-  color: ${Colors.textPrimary};
 `
 
-export const PokemonStatBar = styled.div`
+export const PokemonInfoEvolutionType = styled.div`
   display: flex;
-  flex: 1;
-  height: 6px;
-  border-radius: 50px;
-  overflow: hidden;
-
-  background-color: ${Colors.statBar};
-`
-
-export const PokemonStatFill = styled.div<IPokemonStatFill>`
-  display: flex;
-  width: ${({ width }) => `${width}%`};
-  height: 100%;
-  border-radius: 50px;
-
-  background-color: ${Colors.statBarFill};
 `

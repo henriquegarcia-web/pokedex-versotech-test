@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
 
-export const PokemonType = styled.div`
+interface IPokemonType {
+  minified: number
+}
+
+export const PokemonType = styled.div<IPokemonType>`
   display: flex;
   align-items: center;
   column-gap: 2px;
-  padding: 2px 8px 2px 2px;
+  padding: ${({ minified }) => (minified ? '2px' : '2px 8px 2px 2px')};
   border-radius: 50px;
 
   font-size: 12px;

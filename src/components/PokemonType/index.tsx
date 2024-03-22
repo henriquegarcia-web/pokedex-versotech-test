@@ -2,15 +2,16 @@ import * as S from './styles'
 
 interface IPokemonType {
   type: string
+  minified?: boolean
 }
 
-const PokemonType = ({ type }: IPokemonType) => {
+const PokemonType = ({ type, minified = false }: IPokemonType) => {
   const typeIconSrc = `/images/pokemonTypes/${type}.png`
 
   return (
-    <S.PokemonType>
+    <S.PokemonType minified={minified ? 1 : 0}>
       <S.PokemonTypeIcon src={typeIconSrc} />
-      {type}
+      {!minified && type}
     </S.PokemonType>
   )
 }
