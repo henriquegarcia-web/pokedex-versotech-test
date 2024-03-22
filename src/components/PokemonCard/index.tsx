@@ -27,6 +27,7 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
         <S.PokemonCardImage>
           <MdCatchingPokemon />
           <S.PokemonImage
+            className="pokemon-image"
             src={pokemonData.sprites.other.home.front_default}
             alt={`pokemon-${pokemonData.name}-image`}
           />

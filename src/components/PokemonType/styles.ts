@@ -8,11 +8,12 @@ interface IPokemonType {
 export const PokemonType = styled.div<IPokemonType>`
   display: flex;
   align-items: center;
-  column-gap: 2px;
-  padding: ${({ minified }) => (minified ? '0px' : '2px 8px 2px 2px')};
+  column-gap: 3px;
+  width: fit-content;
+  padding: ${({ minified }) => (minified ? '0px' : '1px 8px 1px 1px')};
   border-radius: 50px;
 
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   text-transform: capitalize;
 

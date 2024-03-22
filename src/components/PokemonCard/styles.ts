@@ -16,6 +16,15 @@ export const PokemonCard = styled.div`
 
   &:hover {
     border: 1px solid ${Colors.borderHover};
+
+    .pokemon-image {
+      height: 88px;
+      /* margin: 0 -10px 0 0; */
+    }
+
+    svg {
+      font-size: 130px;
+    }
   }
 `
 
@@ -44,6 +53,7 @@ export const PokemonCardHeader = styled.div`
 export const PokemonCardMain = styled.div`
   display: flex;
   justify-content: space-between;
+  flex: 1;
 `
 
 export const PokemonCardTypes = styled.div`
@@ -62,8 +72,9 @@ export const PokemonCardImage = styled.div`
     position: absolute;
     right: -50px;
     bottom: -55px;
-    font-size: 150px;
+    font-size: 140px;
     transform: rotate(-35deg);
+    transition: 0.3s;
 
     color: rgba(0, 0, 0, 0.05);
   }
@@ -71,7 +82,11 @@ export const PokemonCardImage = styled.div`
 
 export const PokemonImage = styled.img`
   z-index: 10;
+  z-index: 5;
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
   display: flex;
   height: 80px;
-  margin: 0 -10px 0 0;
+  transition: 0.3s;
 `
