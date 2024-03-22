@@ -14,6 +14,8 @@ import { IRootState } from '@/redux/root-reducer'
 import { pokemonsInitialState } from '@/redux/pokemons/reducer'
 import api from '@/api'
 
+import { IPokemonCardInfo } from '@/@types/pokemonInfos'
+
 const PokedexPage = () => {
   const dispatch = useDispatch()
 
@@ -31,11 +33,19 @@ const PokedexPage = () => {
       const response = await api.get(`pokemon?limit=${limit}&offset=${offset}`)
       const data = response.data
 
-      const pokemonArray = []
+      const pokemonArray: IPokemonCardInfo[] = []
       for (const pokemon of data.results) {
         const pokemonResponse = await api.get(pokemon.url)
         const pokemonData = pokemonResponse.data
-        pokemonArray.push(pokemonData)
+
+        const formattedPokemonData: IPokemonCardInfo = {
+          id: pokemonData.id,
+          name: pokemonData.name,
+          image: pokemonData.sprites.other.home.front_default,
+          types: pokemonData.types
+        }
+
+        pokemonArray.push(formattedPokemonData)
       }
 
       const pokemonData = {
@@ -77,7 +87,7 @@ const PokedexPage = () => {
             <PokedexPageRange currentOffset={currentOffset} />
           </S.PokedexMainListHeader>
           <S.PokedexMainList>
-            {pokemonList?.map((pokemon: any) => (
+            {pokemonList?.map((pokemon: IPokemonCardInfo) => (
               <PokemonCard key={pokemon.name} pokemonData={pokemon} />
             ))}
           </S.PokedexMainList>

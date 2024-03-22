@@ -5,8 +5,10 @@ import { MdCatchingPokemon } from 'react-icons/md'
 
 import { PokemonType } from '@/components'
 
+import { IPokemonCardInfo, IPokemonType } from '@/@types/pokemonInfos'
+
 interface IPokemonCard {
-  pokemonData: any
+  pokemonData: IPokemonCardInfo
 }
 
 const PokemonCard = ({ pokemonData }: IPokemonCard) => {
@@ -20,7 +22,7 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
       </S.PokemonCardHeader>
       <S.PokemonCardMain>
         <S.PokemonCardTypes>
-          {pokemonData.types.map((type: any) => (
+          {pokemonData.types.map((type: IPokemonType) => (
             <PokemonType key={type.slot} type={type.type.name} />
           ))}
         </S.PokemonCardTypes>
@@ -28,7 +30,7 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
           <MdCatchingPokemon />
           <S.PokemonImage
             className="pokemon-image"
-            src={pokemonData.sprites.other.home.front_default}
+            src={pokemonData.image}
             alt={`pokemon-${pokemonData.name}-image`}
           />
         </S.PokemonCardImage>

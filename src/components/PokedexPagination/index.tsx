@@ -6,7 +6,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 interface IPokedexPagination {
   currentOffset: number
-  setCurrentOffset: any
+  setCurrentOffset: (newValue: number) => void
   fetchPokemonList: (limit: number, offset: number) => void
   loading: boolean
   totalPokemonsCount: number

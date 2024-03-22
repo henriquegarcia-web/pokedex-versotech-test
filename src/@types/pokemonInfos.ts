@@ -72,3 +72,10 @@ export interface IPokemonInfo {
   is_legendary: string
   is_mythical: string
 }
+
+export interface IPokemonCardInfo {
+  id: string
+  name: string
+  image: string
+  types: IPokemonType[]
+}

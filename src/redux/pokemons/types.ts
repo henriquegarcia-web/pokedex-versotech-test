@@ -1,10 +1,7 @@
-export interface IPokemon {
-  id: number
-  name: string
-}
+import { IPokemonCardInfo } from '@/@types/pokemonInfos'
 
 export interface IPokemonState {
-  pokemonList: IPokemon[]
+  pokemonList: IPokemonCardInfo[]
   totalCount: number
   offset: number
   nextPage: string | null
@@ -14,7 +11,7 @@ export interface IPokemonState {
 export interface IFetchPokemonSuccessAction {
   type: 'FETCH_POKEMONS_LIST' | 'UPDATE_OFFSET'
   payload: {
-    pokemonList: IPokemon[]
+    pokemonList: IPokemonCardInfo[]
     totalCount: number
     offset: number
     nextPage: string | null
