@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { responsiveMobile } from '@/utils/styles/globals'
+import { Button, responsiveMobile } from '@/utils/styles/globals'
 
 export const PokedexHeaderSearch = styled.form`
   display: flex;
@@ -22,29 +22,11 @@ export const PokedexSearchInput = styled.input`
   background-color: ${Colors.pokedexBlack};
 `
 
-export const PokedexSearchButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const PokedexSearchButton = styled(Button)`
   width: 100px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
 
   font-size: 14px;
   font-weight: 500;
-
-  color: white;
-  background-color: ${Colors.button};
-
-  &:hover {
-    background-color: ${Colors.buttonHover};
-  }
-
-  &:disabled {
-    pointer-events: none;
-    background-color: ${Colors.buttonDisabled};
-  }
 
   @media screen and (max-width: ${responsiveMobile}) {
     width: 70px;

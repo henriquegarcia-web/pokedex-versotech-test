@@ -32,6 +32,7 @@ const PokemonPage = () => {
   )
 
   const [pokemonFetching, setPokemonFetching] = useState(false)
+  const [pokemonError, setPokemonError] = useState(false)
   const [pokemonInfo, setPokemonInfo] = useState<IPokemonInfo | null>(null)
 
   const formatEvolution = async (
@@ -76,6 +77,7 @@ const PokemonPage = () => {
 
   const fetchPokemonInfos = async () => {
     try {
+      setPokemonError(false)
       setPokemonFetching(true)
 
       const response = await api.get(`pokemon/${pokemonId}`)
@@ -118,6 +120,7 @@ const PokemonPage = () => {
     } catch (error) {
       console.error('Error fetching Pokémon infos:', error)
       setPokemonInfo(null)
+      setPokemonError(true)
     } finally {
       setPokemonFetching(false)
     }
@@ -147,7 +150,7 @@ const PokemonPage = () => {
           <S.PokemonInfoHeader>
             <button
               onClick={() => handlePageNavigation(false)}
-              disabled={pageIndex - 1 <= 0}
+              disabled={pokemonError || pageIndex - 1 <= 0}
             >
               <HiArrowLeft />
             </button>
@@ -156,7 +159,7 @@ const PokemonPage = () => {
             </span>
             <button
               onClick={() => handlePageNavigation(true)}
-              disabled={pageIndex + 1 >= totalCount}
+              disabled={pokemonError || pageIndex + 1 >= totalCount}
             >
               <HiArrowRight />
             </button>
@@ -165,6 +168,16 @@ const PokemonPage = () => {
             <S.PokemonInfoLoading>
               <AiOutlineLoading3Quarters />
             </S.PokemonInfoLoading>
+          ) : pokemonError ? (
+            <S.PokemonInfoError>
+              <img src="/images/not_found.svg" alt="Not Found Pokemon Image" />
+              <p>
+                <b>Ooops!</b> Pokemon data not found
+              </p>
+              <S.PokemonInfoErrorButton onClick={() => navigate('/pokedex')}>
+                Back to home
+              </S.PokemonInfoErrorButton>
+            </S.PokemonInfoError>
           ) : (
             <S.PokemonInfoWrapper>
               <S.PokemonInfoPrimary>

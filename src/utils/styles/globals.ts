@@ -1,10 +1,10 @@
-import styled, { createGlobalStyle, keyframes } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import Colors from './colors'
 
 // import Colors from './colors'
 // import Fonts from "../styles/fonts";
 
-export const responsiveDesktop = '1000px'
+export const responsiveDesktop = '900px'
 export const responsiveTablet = '760px'
 export const responsiveMobile = '480px'
 
@@ -67,4 +67,26 @@ export const View = styled.section`
   display: flex;
   width: 100%;
   height: fit-content;
+`
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 8px 14px;
+
+  color: white;
+  background-color: ${Colors.button};
+
+  &:hover {
+    background-color: ${Colors.buttonHover};
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: ${Colors.buttonDisabled};
+  }
 `

@@ -1,6 +1,10 @@
 import styled, { keyframes } from 'styled-components'
 import Colors from '@/utils/styles/colors'
-import { pageWrapperLimit, responsiveTablet } from '@/utils/styles/globals'
+import {
+  Button,
+  pageWrapperLimit,
+  responsiveTablet
+} from '@/utils/styles/globals'
 
 const rotate = keyframes`
   from {
@@ -97,6 +101,32 @@ export const PokemonInfoLoading = styled.div`
     animation: ${rotate} 1s linear infinite;
     color: ${Colors.borderActive};
   }
+`
+
+export const PokemonInfoError = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 25px;
+  width: 100%;
+  height: fit-content;
+  padding: 20px;
+
+  img {
+    width: 140px;
+  }
+
+  p {
+    font-size: 20px;
+
+    color: ${Colors.textTertiary};
+  }
+`
+
+export const PokemonInfoErrorButton = styled(Button)`
+  font-size: 14px;
+  font-weight: 500;
 `
 
 export const PokemonInfoWrapper = styled.div`
