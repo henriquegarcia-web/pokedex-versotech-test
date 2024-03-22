@@ -152,6 +152,7 @@ export const PokemonInfoDescription = styled.p`
 
   font-size: 16px;
   font-weight: 300;
+  line-height: 22px;
 
   color: ${Colors.textPrimary};
 `
@@ -263,6 +264,7 @@ export const PokemonMainInfoWrapper = styled.div`
 
   p {
     font-weight: 400;
+    text-transform: capitalize;
 
     color: ${Colors.textTertiary};
   }

@@ -17,7 +17,11 @@ const PokemonEvolutionCard = ({ evolution }: IPokemonEvolutionCard) => {
     <S.PokemonEvolutionCard
       onClick={() => navigate(`/pokedex/${evolution.name}`)}
     >
-      <S.PokemonEvolutionCardImage src={evolution.image} alt="" />
+      <S.PokemonEvolutionCardImage
+        className="pokemon-image"
+        src={evolution.image}
+        alt=""
+      />
       <S.PokemonEvolutionCardName>{evolution.name}</S.PokemonEvolutionCardName>
       <S.PokemonEvolutionCardType>
         {evolution?.types?.map((type: IPokemonType) => (

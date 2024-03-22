@@ -6,7 +6,7 @@ export const PokedexHeader = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 40px 0;
+  padding: 30px 0;
 
   background-color: ${Colors.pokedexRed};
 `
@@ -28,11 +28,11 @@ export const PokedexHeaderTitle = styled.div`
   cursor: pointer;
 
   font-family: 'pokefont';
-  font-size: 56px;
+  font-size: 46px;
 
   color: ${Colors.textSecondary};
 
   svg {
-    font-size: 50px;
+    font-size: 38px;
   }
 `
