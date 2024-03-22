@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Colors from '@/utils/styles/colors'
 import { pageWrapperLimit } from '@/utils/styles/globals'
 
@@ -70,11 +70,9 @@ export const PokedexMainListHeader = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-
-  /* border: 1px solid red; */
 `
 
-export const PokedexListPageCounter = styled.div`
+export const PokedexPageRange = styled.div`
   display: flex;
   align-items: center;
   column-gap: 6px;
@@ -103,12 +101,11 @@ export const PokedexListPageCounter = styled.div`
 // --------------------- POKEMON LIST MAIN
 
 export const PokedexMainList = styled.div`
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   width: 100%;
-
-  /* border: 1px solid red; */
 `
 
 // --------------------- POKEMON LIST FOOTER
@@ -119,6 +116,15 @@ export const PokedexMainListFooter = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
+`
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 `
 
 export const PokedexPagination = styled.div`
@@ -169,6 +175,11 @@ export const PokedexPagination = styled.div`
 
     color: ${Colors.borderActive};
     border: 1px solid ${Colors.borderActive};
+
+    svg {
+      font-size: 18px;
+      animation: ${rotate} 1s linear infinite;
+    }
   }
 `
 
@@ -192,7 +203,6 @@ export const PokedexSearchInput = styled.input`
 
   color: ${Colors.pokedexWhite};
   background-color: ${Colors.pokedexBlack};
-  /* border: 2px solid ${Colors.pokedexWhite}; */
 `
 
 export const PokedexSearchButton = styled.button`
