@@ -2,14 +2,10 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from './styles'
-import {
-  MdCatchingPokemon,
-  MdChevronLeft,
-  MdChevronRight
-} from 'react-icons/md'
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-import { PokemonCard } from '@/components'
+import { Header, PokemonCard } from '@/components'
 import { pokemonsInitialState } from '@/redux/pokemons/reducer'
 import api from '@/api'
 
@@ -70,15 +66,7 @@ const PokedexPage = () => {
 
   return (
     <S.PokedexPage>
-      <S.PokedexHeader>
-        <S.PokedexHeaderWrapper>
-          <S.PokedexHeaderTitle>
-            <MdCatchingPokemon />
-            PokéDex
-          </S.PokedexHeaderTitle>
-          <PokedexSearch />
-        </S.PokedexHeaderWrapper>
-      </S.PokedexHeader>
+      <Header />
       <S.PokedexMain>
         <S.PokedexMainWrapper>
           <S.PokedexMainListHeader>
@@ -106,22 +94,6 @@ const PokedexPage = () => {
 }
 
 export default PokedexPage
-
-// ======================================== POKEDEX SEARCH INPUT
-
-interface IPokedexSearch {}
-
-const PokedexSearch = ({}: IPokedexSearch) => {
-  return (
-    <S.PokedexHeaderSearch>
-      <S.PokedexSearchInput
-        type="text"
-        placeholder="Pokemon name or type or number "
-      />
-      <S.PokedexSearchButton>Search</S.PokedexSearchButton>
-    </S.PokedexHeaderSearch>
-  )
-}
 
 // ======================================== POKEDEX PAGE RANGE
 

@@ -1,8 +1,6 @@
 import * as S from './styles'
 import { MdCatchingPokemon } from 'react-icons/md'
 
-import { pokemonData } from '@/data/mockPokemon'
-
 interface IPokemonCard {
   pokemonData: any
 }
@@ -16,7 +14,7 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
       </S.PokemonCardHeader>
       <S.PokemonCardMain>
         <S.PokemonCardTypes>
-          {pokemonData.types.map((type) => (
+          {pokemonData.types.map((type: any) => (
             <PokemonType key={type.slot} type={type.type.name} />
           ))}
         </S.PokemonCardTypes>

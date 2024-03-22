@@ -10,7 +10,10 @@ const Colors = {
 
   borderDefault: '#d4d4d4',
   borderHover: '#9f9f9f',
-  borderActive: '#828282'
+  borderActive: '#828282',
+
+  scrollbarTrack: '#d4d4d4',
+  scrollbarThumb: '#343434'
 }
 
 export default Colors

@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import Colors from './colors'
 
 // import Colors from './colors'
 // import Fonts from "../styles/fonts";
@@ -36,22 +37,22 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
 
     -webkit-tap-highlight-color: transparent !important;
+  
+    &::-webkit-scrollbar {
+      width: 6px;
+      z-index: 1000;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: ${Colors.scrollbarTrack};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${Colors.scrollbarThumb};
+    }
   }
 
   scroll-behavior: smooth;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    z-index: 1000;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #ff7a00;
-  }
 `
 
 export default GlobalStyle
