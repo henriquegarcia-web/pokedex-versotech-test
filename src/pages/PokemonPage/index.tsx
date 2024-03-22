@@ -5,7 +5,12 @@ import * as S from './styles'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-import { Header, PokemonStat, PokemonType } from '@/components'
+import {
+  Header,
+  PokemonEvolutionCard,
+  PokemonStat,
+  PokemonType
+} from '@/components'
 import api from '@/api'
 
 import {
@@ -251,29 +256,5 @@ const PokemonMainInfos = ({ pokemonInfo }: IPokemonMainInfos) => {
         <p>{pokemonInfo?.height}</p>
       </S.PokemonMainInfoWrapper>
     </S.PokemonMainInfos>
-  )
-}
-
-// =============================== POKEMON EVOLUTION CARD
-
-interface IPokemonEvolutionCard {
-  evolution: IFormattedEvolution
-}
-
-const PokemonEvolutionCard = ({ evolution }: IPokemonEvolutionCard) => {
-  const navigate = useNavigate()
-
-  return (
-    <S.PokemonEvolutionCard
-      onClick={() => navigate(`/pokedex/${evolution.name}`)}
-    >
-      <S.PokemonEvolutionCardImage src={evolution.image} alt="" />
-      <S.PokemonEvolutionCardName>{evolution.name}</S.PokemonEvolutionCardName>
-      <S.PokemonEvolutionCardType>
-        {evolution?.types?.map((type: IPokemonType) => (
-          <PokemonType key={type.slot} type={type.type.name} minified />
-        ))}
-      </S.PokemonEvolutionCardType>
-    </S.PokemonEvolutionCard>
   )
 }
