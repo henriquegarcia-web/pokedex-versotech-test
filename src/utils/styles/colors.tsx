@@ -11,6 +11,7 @@ const Colors = {
 
   button: '#2aaafe',
   buttonHover: '#1e99eb',
+  buttonDisabled: '#50b9ff',
 
   borderDefault: '#d4d4d4',
   borderHover: '#9f9f9f',

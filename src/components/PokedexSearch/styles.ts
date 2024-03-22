@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
 
-export const PokedexHeaderSearch = styled.div`
+export const PokedexHeaderSearch = styled.form`
   display: flex;
   width: 100%;
   column-gap: 10px;
@@ -38,5 +38,10 @@ export const PokedexSearchButton = styled.button`
 
   &:hover {
     background-color: ${Colors.buttonHover};
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background-color: ${Colors.buttonDisabled};
   }
 `
