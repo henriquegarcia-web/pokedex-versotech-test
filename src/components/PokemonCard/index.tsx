@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import * as S from './styles'
 import { MdCatchingPokemon } from 'react-icons/md'
 
+import { PokemonType } from '@/components'
+
 interface IPokemonCard {
   pokemonData: any
 }
@@ -35,20 +37,3 @@ const PokemonCard = ({ pokemonData }: IPokemonCard) => {
 }
 
 export default PokemonCard
-
-// ========================================== POKEMON TYPE
-
-interface IPokemonType {
-  type: string
-}
-
-const PokemonType = ({ type }: IPokemonType) => {
-  const typeIconSrc = `/images/pokemonTypes/${type}.png`
-
-  return (
-    <S.PokemonType>
-      <S.PokemonTypeIcon src={typeIconSrc} />
-      {type}
-    </S.PokemonType>
-  )
-}

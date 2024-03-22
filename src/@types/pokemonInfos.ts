@@ -1,4 +1,4 @@
-export interface EvolutionDetails {
+export interface IEvolutionDetails {
   gender: string | null
   held_item: string | null
   item: string | null
@@ -22,12 +22,54 @@ export interface EvolutionDetails {
   turn_upside_down: boolean
 }
 
-export interface Evolution {
-  evolution_details: EvolutionDetails[]
-  evolves_to: Evolution[]
+export interface IEvolution {
+  evolution_details: IEvolutionDetails[]
+  evolves_to: IEvolution[]
   is_baby: boolean
   species: {
     name: string
     url: string
+  }
+}
+
+export interface IFormattedEvolution {
+  speciesName: string
+  minLevel: number | null
+  triggerName: string | null
+}
+
+export interface IPokemonType {
+  slot: number
+  type: {
+    name: string
+    url: string
+  }
+}
+
+export interface IStatType {
+  base_stat: number
+  effort: number
+  stat: {
+    name: string
+    url: string
+  }
+}
+
+export interface IPokemonInfo {
+  image: string
+  id: string
+  name: string
+  height: string
+  weight: string
+  types: IPokemonType[]
+  stats: IStatType[]
+  details: {
+    color: string
+    category: string
+    generation: string
+    shape: string
+    evolutions: IFormattedEvolution[]
+    is_legendary: string
+    is_mythical: string
   }
 }

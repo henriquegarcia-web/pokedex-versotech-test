@@ -4,6 +4,7 @@ const Colors = {
   textTertiary: '#979797',
 
   pokedexRed: '#dc0a2d',
+  pokedexBlue: '#1e99eb',
   pokedexWhite: '#dedede',
   pokedexBlack: '#232323',
 
@@ -15,7 +16,10 @@ const Colors = {
   borderActive: '#828282',
 
   scrollbarTrack: '#d4d4d4',
-  scrollbarThumb: '#343434'
+  scrollbarThumb: '#343434',
+
+  statBar: '#d4d4d4',
+  statBarFill: '#343434'
 }
 
 export default Colors
