@@ -1,8 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import * as S from './styles'
-import { MdCatchingPokemon } from 'react-icons/md'
+import {
+  MdCatchingPokemon,
+  MdChevronLeft,
+  MdChevronRight
+} from 'react-icons/md'
 
 import { PokemonCard } from '@/components'
 import { pokemonsInitialState } from '@/redux/pokemons/reducer'
@@ -11,11 +15,12 @@ import api from '@/api'
 const PokedexPage = () => {
   const dispatch = useDispatch()
 
-  const { pokemonList, totalCount, nextPage, previousPage } = useSelector(
-    (rootReducer) => rootReducer.pokemonsReducer
-  )
+  const { pokemonList, totalCount, offset, nextPage, previousPage } =
+    useSelector((rootReducer) => rootReducer.pokemonsReducer)
 
-  const fetchPokemonData = async (limit = 10, offset = 0) => {
+  const [currentOffset, setCurrentOffset] = useState(offset)
+
+  const fetchPokemonData = async (limit = 12, offset = 0) => {
     try {
       const response = await api.get(`pokemon?limit=${limit}&offset=${offset}`)
       const data = response.data
@@ -30,6 +35,7 @@ const PokedexPage = () => {
       const pokemonData = {
         pokemonList: pokemonArray,
         totalCount: data.count,
+        offset: currentOffset,
         nextPage: data.next,
         previousPage: data.previous
       }
@@ -52,9 +58,9 @@ const PokedexPage = () => {
     fetchPokemonData()
   }, [])
 
-  useEffect(() => {
-    console.log(pokemonList)
-  }, [pokemonList])
+  // useEffect(() => {
+  //   console.log(offset, currentOffset)
+  // }, [offset, currentOffset])
 
   return (
     <S.PokedexPage>
@@ -69,12 +75,26 @@ const PokedexPage = () => {
       </S.PokedexHeader>
       <S.PokedexMain>
         <S.PokedexMainWrapper>
-          <S.PokedexMainFilters></S.PokedexMainFilters>
+          <S.PokedexMainListHeader>
+            <div></div>
+            <S.PokedexListPageCounter>
+              <p>Number range:</p>
+              <span>0001</span>-<span>0009</span>
+            </S.PokedexListPageCounter>
+          </S.PokedexMainListHeader>
           <S.PokedexMainList>
             {pokemonList?.map((pokemon: any) => (
               <PokemonCard key={pokemon.name} pokemonData={pokemon} />
             ))}
           </S.PokedexMainList>
+          <S.PokedexMainListFooter>
+            <div></div>
+            <PokedexPagination
+              currentOffset={currentOffset}
+              setCurrentOffset={setCurrentOffset}
+              fetchPokemonData={fetchPokemonData}
+            />
+          </S.PokedexMainListFooter>
         </S.PokedexMainWrapper>
       </S.PokedexMain>
     </S.PokedexPage>
@@ -92,9 +112,49 @@ const PokedexSearch = ({}: IPokedexSearch) => {
     <S.PokedexHeaderSearch>
       <S.PokedexSearchInput
         type="text"
-        placeholder="Procure por nome, etc ..."
+        placeholder="Pokemon name or type or number "
       />
-      <S.PokedexSearchButton>Pesquisar</S.PokedexSearchButton>
+      <S.PokedexSearchButton>Search</S.PokedexSearchButton>
     </S.PokedexHeaderSearch>
+  )
+}
+
+// ======================================== POKEDEX PAGINATION
+
+interface IPokedexPagination {
+  currentOffset: number
+  setCurrentOffset: any
+  fetchPokemonData: (limit: number, offset: number) => void
+}
+
+const PokedexPagination = ({
+  currentOffset,
+  setCurrentOffset,
+  fetchPokemonData
+}: IPokedexPagination) => {
+  const pageIndex = Math.floor(currentOffset / 12) + 1
+
+  const handleNextPage = () => {
+    setCurrentOffset(currentOffset + 12)
+    fetchPokemonData(12, currentOffset + 12)
+  }
+
+  const handlePreviousPage = () => {
+    if (pageIndex === 1) return
+
+    setCurrentOffset(currentOffset - 12)
+    fetchPokemonData(12, currentOffset - 12)
+  }
+
+  return (
+    <S.PokedexPagination>
+      <button onClick={handlePreviousPage} disabled={pageIndex === 1}>
+        <MdChevronLeft />
+      </button>
+      <span>{pageIndex}</span>
+      <button onClick={handleNextPage}>
+        <MdChevronRight />
+      </button>
+    </S.PokedexPagination>
   )
 }

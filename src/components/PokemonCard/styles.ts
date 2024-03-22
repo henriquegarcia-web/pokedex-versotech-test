@@ -5,12 +5,18 @@ export const PokemonCard = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  width: calc((100% / 3) - (20px / 3));
+  width: calc((100% / 4) - (30px / 4));
   padding: 15px;
   border-radius: 8px;
   overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
 
-  border: 1px solid black;
+  border: 1px solid ${Colors.borderDefault};
+
+  &:hover {
+    border: 1px solid ${Colors.borderHover};
+  }
 `
 
 export const PokemonCardHeader = styled.div`
@@ -19,15 +25,19 @@ export const PokemonCardHeader = styled.div`
   align-items: center;
 
   b {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     text-transform: capitalize;
     letter-spacing: 0.5px;
+
+    color: ${Colors.textPrimary};
   }
 
   p {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
+
+    color: ${Colors.textTertiary};
   }
 `
 
@@ -39,6 +49,7 @@ export const PokemonCardMain = styled.div`
 export const PokemonCardTypes = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   row-gap: 4px;
 `
 
@@ -65,13 +76,11 @@ export const PokemonCardImage = styled.div`
   position: relative;
   display: flex;
 
-  /* border: 1px solid red; */
-
   svg {
     z-index: 5;
     position: absolute;
     right: -50px;
-    bottom: -50px;
+    bottom: -55px;
     font-size: 150px;
     transform: rotate(-35deg);
 
