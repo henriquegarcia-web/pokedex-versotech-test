@@ -25,6 +25,7 @@ export const PokedexHeaderTitle = styled.div`
   display: flex;
   align-items: center;
   column-gap: 5px;
+  height: 42px;
   cursor: pointer;
 
   font-family: 'pokefont';

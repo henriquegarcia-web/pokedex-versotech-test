@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'pokefont';
-    src: url('/fonts/airstrike.ttf') format('truetype');
+    src: url('/fonts/airstrike.woff2') format('woff2');
   }
 
   :root {
