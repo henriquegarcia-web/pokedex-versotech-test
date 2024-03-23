@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
@@ -66,7 +66,7 @@ const PokedexSearch = ({}: IPokedexSearch) => {
             {...field}
             type="text"
             placeholder="Exact pokemon name or number"
-            onChange={(e) => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               const newValue = e.target.value.replace(/[^a-zA-Z0-9\s]/g, '')
               field.onChange(newValue)
             }}

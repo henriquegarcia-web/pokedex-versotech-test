@@ -60,6 +60,14 @@ export const PokedexMainList = styled.div`
   width: 100%;
 `
 
+export const PokedexMainListLoading = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+`
+
 // --------------------- POKEMON LIST FOOTER
 
 export const PokedexMainListFooter = styled.div`
