@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as S from './styles'
 
 import {
-  Header,
+  PokedexHeader,
   PokedexPageRange,
   PokedexPagination,
-  PokemonCard
+  PokemonCard,
+  PokedexFooter
 } from '@/components'
 
 import { IRootState } from '@/redux/root-reducer'
@@ -87,7 +88,7 @@ const PokedexPage = () => {
 
   return (
     <S.PokedexPage>
-      <Header />
+      <PokedexHeader />
       <S.PokedexMain>
         <S.PokedexMainWrapper>
           <S.PokedexMainListHeader>
@@ -113,6 +114,7 @@ const PokedexPage = () => {
           </S.PokedexMainListFooter>
         </S.PokedexMainWrapper>
       </S.PokedexMain>
+      <PokedexFooter />
     </S.PokedexPage>
   )
 }

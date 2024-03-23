@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Colors from '@/utils/styles/colors'
 import { pageWrapperLimit } from '@/utils/styles/globals'
 
-export const PokedexHeader = styled.div`
+export const PokedexHeader = styled.header`
   display: flex;
   justify-content: center;
   width: 100%;

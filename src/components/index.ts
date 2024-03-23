@@ -1,5 +1,7 @@
 import Alert from './Alert'
-import Header from './Header'
+
+import PokedexHeader from './PokedexHeader'
+import PokedexFooter from './PokedexFooter'
 
 import PokedexLogo from './PokedexLogo'
 import PokedexSearch from './PokedexSearch'
@@ -14,7 +16,8 @@ import PokemonGender from './PokemonGender'
 
 export {
   Alert,
-  Header,
+  PokedexHeader,
+  PokedexFooter,
   PokedexLogo,
   PokedexSearch,
   PokedexPageRange,

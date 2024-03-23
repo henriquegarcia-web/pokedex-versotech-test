@@ -6,11 +6,12 @@ import * as S from './styles'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
 
 import {
-  Header,
+  PokedexHeader,
   PokemonEvolutionCard,
   PokemonGender,
   PokemonStat,
-  PokemonType
+  PokemonType,
+  PokedexFooter
 } from '@/components'
 
 import api from '@/api'
@@ -172,7 +173,7 @@ const PokemonPage = () => {
 
   return (
     <S.PokemonPage>
-      <Header />
+      <PokedexHeader />
       <S.PokemonMain>
         <S.PokemonMainWrapper>
           <S.PokemonInfoHeader>
@@ -292,6 +293,7 @@ const PokemonPage = () => {
           )}
         </S.PokemonMainWrapper>
       </S.PokemonMain>
+      <PokedexFooter />
     </S.PokemonPage>
   )
 }
