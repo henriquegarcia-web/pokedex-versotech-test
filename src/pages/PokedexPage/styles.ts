@@ -1,5 +1,19 @@
-import styled from 'styled-components'
-import { pageWrapperLimit } from '@/utils/styles/globals'
+import styled, { keyframes } from 'styled-components'
+import {
+  pageWrapperLimit,
+  responsiveDesktop,
+  responsiveMobile,
+  responsiveTablet
+} from '@/utils/styles/globals'
+
+const skeletonAnimation = keyframes`
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+`
 
 export const PokedexPage = styled.main`
   display: flex;
@@ -54,4 +68,30 @@ export const PokedexMainListFooter = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
+`
+
+// --------------------- INFOS SKELETON
+
+export const PokemonCardSkeleton = styled.div`
+  display: flex;
+  width: calc((100% / 4) - (30px / 4));
+  min-height: 130px;
+  border-radius: 8px;
+
+  background-color: #f0f0f0;
+  background-image: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200px 100%;
+  animation: ${skeletonAnimation} 1.5s infinite linear;
+
+  @media screen and (max-width: ${responsiveDesktop}) {
+    width: calc((100% / 3) - (20px / 3));
+  }
+
+  @media screen and (max-width: ${responsiveTablet}) {
+    width: calc((100% / 2) - (10px / 2));
+  }
+
+  @media screen and (max-width: ${responsiveMobile}) {
+    width: 100%;
+  }
 `

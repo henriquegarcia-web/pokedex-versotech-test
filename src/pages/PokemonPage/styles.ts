@@ -6,12 +6,12 @@ import {
   responsiveTablet
 } from '@/utils/styles/globals'
 
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
+const skeletonAnimation = keyframes`
+  0% {
+    background-position: -200px 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    background-position: 200px 0;
   }
 `
 
@@ -89,20 +89,6 @@ export const PokemonInfoHeader = styled.div`
 
 // --------------------- INFOS WRAPPER
 
-export const PokemonInfoLoading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-
-  svg {
-    font-size: 40px;
-
-    animation: ${rotate} 1s linear infinite;
-    color: ${Colors.borderActive};
-  }
-`
-
 export const PokemonInfoError = styled.div`
   display: flex;
   flex-direction: column;
@@ -139,6 +125,19 @@ export const PokemonInfoWrapper = styled.div`
   }
 `
 
+export const PokemonInfoContainerHeader = styled.h2`
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+
+  font-weight: 600;
+  text-transform: capitalize;
+
+  color: ${Colors.textSecondary};
+  background-color: ${Colors.pokedexGray};
+`
+
 // --------------------- INFOS PRIMARY
 
 export const PokemonInfoPrimary = styled.div`
@@ -157,18 +156,8 @@ export const PokemonInfoPrimary = styled.div`
   }
 `
 
-export const PokemonInfoPrimaryHeader = styled.h1`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 0 15px;
-
+export const PokemonInfoPrimaryHeader = styled(PokemonInfoContainerHeader)`
   font-size: 22px;
-  font-weight: 600;
-  text-transform: capitalize;
-
-  color: ${Colors.textSecondary};
-  background-color: ${Colors.pokedexGray};
 `
 
 export const PokemonInfoPrimaryWrapper = styled.div`
@@ -231,18 +220,8 @@ export const PokemonInfoSecondary = styled.div`
   }
 `
 
-export const PokemonInfoSecondaryHeader = styled.div`
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 0 15px;
-
+export const PokemonInfoSecondaryHeader = styled(PokemonInfoContainerHeader)`
   font-size: 18px;
-  font-weight: 600;
-  text-transform: capitalize;
-
-  color: ${Colors.textSecondary};
-  background-color: ${Colors.pokedexGray};
 `
 
 export const PokemonInfoSecondaryWrapper = styled.div`
@@ -325,4 +304,55 @@ export const PokemonMainInfoWrapper = styled.div`
   &:hover {
     border: 1px solid ${Colors.borderHover};
   }
+`
+
+// --------------------- INFOS SKELETON
+
+export const Skeleton = styled.div`
+  border-radius: 8px;
+
+  background-color: #f0f0f0;
+  background-image: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200px 100%;
+  animation: ${skeletonAnimation} 1.5s infinite linear;
+`
+
+export const PageIndicatorSkeleton = styled(Skeleton)`
+  width: 70px;
+  height: 20px;
+  border-radius: 4px;
+`
+
+export const PokemonHeaderSkeleton = styled(Skeleton)`
+  height: 50px;
+`
+
+export const PokemonImageSkeleton = styled(Skeleton)`
+  width: 100%;
+  padding-top: 100%;
+`
+
+export const PokemonDescriptionSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 60px;
+`
+
+export const PokemonEvolutionSkeleton = styled(Skeleton)`
+  width: calc((100% / 3) - (30px / 3));
+  height: 150px;
+`
+
+export const PokemonMainInfosSkeleton = styled(Skeleton)`
+  width: calc(50% - (10px / 2));
+  height: 30px;
+`
+
+export const PokemonTypeSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 30px;
+`
+
+export const PokemonInfosSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 30px;
 `

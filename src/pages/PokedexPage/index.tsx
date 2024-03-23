@@ -77,22 +77,32 @@ const PokedexPage = () => {
     setCurrentOffset(0)
   }, [])
 
+  const renderPokemonSkeleton = () => {
+    const pokemonCards = []
+    for (let i = 0; i < 12; i++) {
+      pokemonCards.push(<S.PokemonCardSkeleton key={`pokemon-cards-${i}`} />)
+    }
+    return pokemonCards
+  }
+
   return (
     <S.PokedexPage>
       <Header />
       <S.PokedexMain>
         <S.PokedexMainWrapper>
           <S.PokedexMainListHeader>
-            <div></div>
+            <div />
             <PokedexPageRange currentOffset={currentOffset} />
           </S.PokedexMainListHeader>
           <S.PokedexMainList>
-            {pokemonList?.map((pokemon: IPokemonCardInfo) => (
-              <PokemonCard key={pokemon.name} pokemonData={pokemon} />
-            ))}
+            {pokemonsFetching
+              ? renderPokemonSkeleton()
+              : pokemonList?.map((pokemon: IPokemonCardInfo) => (
+                  <PokemonCard key={pokemon.name} pokemonData={pokemon} />
+                ))}
           </S.PokedexMainList>
           <S.PokedexMainListFooter>
-            <div></div>
+            <div />
             <PokedexPagination
               currentOffset={currentOffset}
               setCurrentOffset={setCurrentOffset}

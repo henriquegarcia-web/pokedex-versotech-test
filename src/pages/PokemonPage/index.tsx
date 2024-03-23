@@ -144,6 +144,24 @@ const PokemonPage = () => {
     navigate(`/pokedex/${nextPageIndex}`)
   }
 
+  const renderEvolutionsSkeleton = () => {
+    const evolutionsCards = []
+    for (let i = 0; i < 3; i++) {
+      evolutionsCards.push(
+        <S.PokemonEvolutionSkeleton key={`pokemon-evolutions-${i}`} />
+      )
+    }
+    return evolutionsCards
+  }
+
+  const renderInfosSkeleton = () => {
+    const infosCards = []
+    for (let i = 0; i < 6; i++) {
+      infosCards.push(<S.PokemonInfosSkeleton key={`pokemon-infos-${i}`} />)
+    }
+    return infosCards
+  }
+
   return (
     <S.PokemonPage>
       <Header />
@@ -156,9 +174,13 @@ const PokemonPage = () => {
             >
               <HiArrowLeft />
             </button>
-            <span>
-              {pokemonInfo?.id} / <b>{totalCount}</b>
-            </span>
+            {pokemonFetching ? (
+              <S.PageIndicatorSkeleton />
+            ) : (
+              <span>
+                {pokemonInfo?.id} / <b>{totalCount}</b>
+              </span>
+            )}
             <button
               onClick={() => handlePageNavigation(true)}
               disabled={pokemonError || pageIndex + 1 >= totalCount}
@@ -166,11 +188,7 @@ const PokemonPage = () => {
               <HiArrowRight />
             </button>
           </S.PokemonInfoHeader>
-          {pokemonFetching ? (
-            <S.PokemonInfoLoading>
-              <AiOutlineLoading3Quarters />
-            </S.PokemonInfoLoading>
-          ) : pokemonError ? (
+          {pokemonError ? (
             <S.PokemonInfoError>
               <img src="/images/not_found.svg" alt="Not Found Pokemon Image" />
               <p>
@@ -183,56 +201,81 @@ const PokemonPage = () => {
           ) : (
             <S.PokemonInfoWrapper>
               <S.PokemonInfoPrimary>
-                <S.PokemonInfoPrimaryHeader>
-                  {pokemonInfo?.name}
-                </S.PokemonInfoPrimaryHeader>
+                {pokemonFetching ? (
+                  <S.PokemonHeaderSkeleton />
+                ) : (
+                  <S.PokemonInfoPrimaryHeader>
+                    {pokemonInfo?.name}
+                  </S.PokemonInfoPrimaryHeader>
+                )}
                 <S.PokemonInfoPrimaryWrapper>
-                  <S.PokemonInfoImage>
-                    <img src={pokemonInfo?.image} alt="" />
-                  </S.PokemonInfoImage>
-                  <S.PokemonInfoDescription>
-                    {pokemonInfo?.description}
-                  </S.PokemonInfoDescription>
+                  {pokemonFetching ? (
+                    <S.PokemonImageSkeleton />
+                  ) : (
+                    <S.PokemonInfoImage>
+                      <img src={pokemonInfo?.image} alt="" />
+                    </S.PokemonInfoImage>
+                  )}
+                  {pokemonFetching ? (
+                    <S.PokemonDescriptionSkeleton />
+                  ) : (
+                    <S.PokemonInfoDescription>
+                      {pokemonInfo?.description}
+                    </S.PokemonInfoDescription>
+                  )}
                   <S.PokemonInfoEvolutions>
                     <S.PokemonInfoTitle>Evolutionary Line:</S.PokemonInfoTitle>
                     <S.PokemonInfoEvolutionsWrapper>
-                      {pokemonInfo?.evolutions?.map(
-                        (evolution: IFormattedEvolution) => (
-                          <PokemonEvolutionCard
-                            key={`${evolution.name}-evolution`}
-                            evolution={evolution}
-                          />
-                        )
-                      )}
+                      {pokemonFetching
+                        ? renderEvolutionsSkeleton()
+                        : pokemonInfo?.evolutions?.map(
+                            (evolution: IFormattedEvolution) => (
+                              <PokemonEvolutionCard
+                                key={`${evolution.name}-evolution`}
+                                evolution={evolution}
+                              />
+                            )
+                          )}
                     </S.PokemonInfoEvolutionsWrapper>
                   </S.PokemonInfoEvolutions>
                 </S.PokemonInfoPrimaryWrapper>
               </S.PokemonInfoPrimary>
               <S.PokemonInfoSecondary>
-                <S.PokemonInfoSecondaryHeader>
-                  {`${pokemonInfo?.name}'s`} Details
-                </S.PokemonInfoSecondaryHeader>
+                {pokemonFetching ? (
+                  <S.PokemonHeaderSkeleton />
+                ) : (
+                  <S.PokemonInfoSecondaryHeader>
+                    {`${pokemonInfo?.name}'s`} Details
+                  </S.PokemonInfoSecondaryHeader>
+                )}
                 <S.PokemonInfoSecondaryWrapper>
                   <S.PokemonInfoDetails>
                     <S.PokemonInfoTitle>Main Infos</S.PokemonInfoTitle>
-                    <PokemonMainInfos pokemonInfo={pokemonInfo} />
+                    <PokemonMainInfos
+                      pokemonInfo={pokemonInfo}
+                      pokemonFetching={pokemonFetching}
+                    />
                   </S.PokemonInfoDetails>
                   <S.PokemonInfoType>
                     <S.PokemonInfoTitle>Type:</S.PokemonInfoTitle>
                     <S.PokemonInfoTypeWrapper>
-                      {pokemonInfo?.types?.map((type: IPokemonType) => (
-                        <PokemonType key={type.slot} type={type.type.name} />
-                      ))}
+                      {pokemonFetching ? (
+                        <S.PokemonTypeSkeleton />
+                      ) : (
+                        pokemonInfo?.types?.map((type: IPokemonType) => (
+                          <PokemonType key={type.slot} type={type.type.name} />
+                        ))
+                      )}
                     </S.PokemonInfoTypeWrapper>
                   </S.PokemonInfoType>
                   <S.PokemonInfoStatus>
-                    <S.PokemonInfoTitle>
-                      {`${pokemonInfo?.name}'s`} Stats
-                    </S.PokemonInfoTitle>
+                    <S.PokemonInfoTitle>Stats:</S.PokemonInfoTitle>
                     <S.PokemonInfoStatusWrapper>
-                      {pokemonInfo?.stats?.map((stat: IStatType) => (
-                        <PokemonStat key={stat.stat.name} stat={stat} />
-                      ))}
+                      {pokemonFetching
+                        ? renderInfosSkeleton()
+                        : pokemonInfo?.stats?.map((stat: IStatType) => (
+                            <PokemonStat key={stat.stat.name} stat={stat} />
+                          ))}
                     </S.PokemonInfoStatusWrapper>
                   </S.PokemonInfoStatus>
                 </S.PokemonInfoSecondaryWrapper>
@@ -251,35 +294,55 @@ export default PokemonPage
 
 interface IPokemonMainInfos {
   pokemonInfo: IPokemonInfo | null
+  pokemonFetching: boolean
 }
 
-const PokemonMainInfos = ({ pokemonInfo }: IPokemonMainInfos) => {
+const PokemonMainInfos = ({
+  pokemonInfo,
+  pokemonFetching
+}: IPokemonMainInfos) => {
+  const renderMainInfosSkeleton = () => {
+    const infosCards = []
+    for (let i = 0; i < 6; i++) {
+      infosCards.push(
+        <S.PokemonMainInfosSkeleton key={`pokemon-main-infos-${i}`} />
+      )
+    }
+    return infosCards
+  }
+
   return (
     <S.PokemonMainInfos>
-      <S.PokemonMainInfoWrapper>
-        <b>Category:</b>
-        <p>{pokemonInfo?.category}</p>
-      </S.PokemonMainInfoWrapper>
-      <S.PokemonMainInfoWrapper>
-        <b>Generation:</b>
-        <p>{pokemonInfo?.generation}</p>
-      </S.PokemonMainInfoWrapper>
-      <S.PokemonMainInfoWrapper>
-        <b>Height:</b>
-        <p>{pokemonInfo?.height}</p>
-      </S.PokemonMainInfoWrapper>
-      <S.PokemonMainInfoWrapper>
-        <b>Weight:</b>
-        <p>{pokemonInfo?.weight}</p>
-      </S.PokemonMainInfoWrapper>
-      <S.PokemonMainInfoWrapper>
-        <b>Shape:</b>
-        <p>{pokemonInfo?.shape}</p>
-      </S.PokemonMainInfoWrapper>
-      <S.PokemonMainInfoWrapper>
-        <b>Gender:</b>
-        <p>{pokemonInfo?.height}</p>
-      </S.PokemonMainInfoWrapper>
+      {pokemonFetching ? (
+        renderMainInfosSkeleton()
+      ) : (
+        <>
+          <S.PokemonMainInfoWrapper>
+            <b>Category:</b>
+            <p>{pokemonInfo?.category}</p>
+          </S.PokemonMainInfoWrapper>
+          <S.PokemonMainInfoWrapper>
+            <b>Generation:</b>
+            <p>{pokemonInfo?.generation}</p>
+          </S.PokemonMainInfoWrapper>
+          <S.PokemonMainInfoWrapper>
+            <b>Height:</b>
+            <p>{pokemonInfo?.height}</p>
+          </S.PokemonMainInfoWrapper>
+          <S.PokemonMainInfoWrapper>
+            <b>Weight:</b>
+            <p>{pokemonInfo?.weight}</p>
+          </S.PokemonMainInfoWrapper>
+          <S.PokemonMainInfoWrapper>
+            <b>Shape:</b>
+            <p>{pokemonInfo?.shape}</p>
+          </S.PokemonMainInfoWrapper>
+          <S.PokemonMainInfoWrapper>
+            <b>Gender:</b>
+            <p>{pokemonInfo?.height}</p>
+          </S.PokemonMainInfoWrapper>
+        </>
+      )}
     </S.PokemonMainInfos>
   )
 }
