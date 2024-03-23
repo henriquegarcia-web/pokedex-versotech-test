@@ -21,7 +21,8 @@ const PokedexPage = () => {
   const dispatch = useDispatch()
 
   const { pokemonList, totalCount, offset } = useSelector(
-    (rootReducer: IRootState) => rootReducer.pokemonsReducer
+    (rootReducer: IRootState) =>
+      rootReducer.pokemonsReducer || pokemonsInitialState
   )
 
   const [pokemonsFetching, setPokemonsFetching] = useState(false)
@@ -95,13 +96,19 @@ const PokedexPage = () => {
             <div />
             <PokedexPageRange currentOffset={currentOffset} />
           </S.PokedexMainListHeader>
-          <S.PokedexMainList>
-            {pokemonsFetching
-              ? renderPokemonSkeleton()
-              : pokemonList?.map((pokemon: IPokemonCardInfo) => (
-                  <PokemonCard key={pokemon.name} pokemonData={pokemon} />
-                ))}
-          </S.PokedexMainList>
+
+          {pokemonsFetching || pokemonList.length === 0 ? (
+            <S.PokedexMainList data-testid="pokemon-cards-skeleton">
+              {renderPokemonSkeleton()}
+            </S.PokedexMainList>
+          ) : (
+            pokemonList?.map((pokemon: IPokemonCardInfo) => (
+              <S.PokedexMainListLoading data-testid="pokemon-cards">
+                <PokemonCard key={pokemon.name} pokemonData={pokemon} />
+              </S.PokedexMainListLoading>
+            ))
+          )}
+
           <S.PokedexMainListFooter>
             <div />
             <PokedexPagination

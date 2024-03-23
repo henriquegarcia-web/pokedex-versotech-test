@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import * as S from './styles'
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md'
@@ -76,7 +76,9 @@ const PokedexPagination = ({
             min={1}
             max={Math.floor(totalPokemonsCount / 12)}
             value={pagination}
-            onChange={(e) => handleChangeIndexPage(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangeIndexPage(e.target.value)
+            }
             onBlur={handleBlurIndexPage}
           />
         )}
