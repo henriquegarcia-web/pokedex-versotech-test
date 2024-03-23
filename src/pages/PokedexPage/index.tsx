@@ -96,19 +96,17 @@ const PokedexPage = () => {
             <div />
             <PokedexPageRange currentOffset={currentOffset} />
           </S.PokedexMainListHeader>
-
           {pokemonsFetching || pokemonList.length === 0 ? (
-            <S.PokedexMainList data-testid="pokemon-cards-skeleton">
+            <S.PokedexMainListLoading data-testid="pokemon-cards-skeleton">
               {renderPokemonSkeleton()}
-            </S.PokedexMainList>
+            </S.PokedexMainListLoading>
           ) : (
-            pokemonList?.map((pokemon: IPokemonCardInfo) => (
-              <S.PokedexMainListLoading data-testid="pokemon-cards">
+            <S.PokedexMainList data-testid="pokemon-cards">
+              {pokemonList?.map((pokemon: IPokemonCardInfo) => (
                 <PokemonCard key={pokemon.name} pokemonData={pokemon} />
-              </S.PokedexMainListLoading>
-            ))
+              ))}
+            </S.PokedexMainList>
           )}
-
           <S.PokedexMainListFooter>
             <div />
             <PokedexPagination
