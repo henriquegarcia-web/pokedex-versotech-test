@@ -12,8 +12,11 @@ const Header = () => {
     <S.PokedexHeader>
       <S.PokedexHeaderWrapper>
         <S.PokedexHeaderTitle onClick={() => navigate('/pokedex')}>
-          <MdCatchingPokemon />
-          PokéDex
+          <h1>
+            P
+            <MdCatchingPokemon />
+            keDex
+          </h1>
         </S.PokedexHeaderTitle>
         <PokedexSearch />
       </S.PokedexHeaderWrapper>
