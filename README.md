@@ -4,12 +4,12 @@
 
 > Desenvolvido por: **[Henrique Garcia](https://www.linkedin.com/in/henrique-garcia-dev/)** <br/>
 > Empresa: **[VersoTech](https://www.versotech.com.br/)** <br/>
-> Data de início: **22/03/2024** <br/>
+> Data de início: **21/03/2024** <br/>
 > Data de término: **22/03/2024**
 
 ## Overview
 
-Acesse a aplicação [clicando aqui]()
+**Acesse a aplicação [clicando aqui](https://pokedex-versotech-test.vercel.app/)**
 
 PokéDex App é um aplicativo web desenvolvido em React e Redux, que permite aos usuários navegar e explorar informações sobre vários Pokémon. O aplicativo utiliza a API [pokeapi.co](https://pokeapi.co/) para buscar dados de Pokémon, como nome, imagem, tipo, habilidades, evoluções e estatísticas. Os usuários podem pesquisar Pokémon por nome ou número, e o aplicativo fornece paginação para facilitar a navegação pela lista de Pokémon.
 
