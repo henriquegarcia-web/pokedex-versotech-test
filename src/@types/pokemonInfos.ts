@@ -33,6 +33,7 @@ export interface IEvolution {
 }
 
 export interface IFormattedEvolution {
+  id: string
   name: string
   image: string
   types: IPokemonType[]
@@ -61,6 +62,7 @@ export interface IPokemonInfo {
   name: string
   height: string
   weight: string
+  gender_rate: number
   types: IPokemonType[]
   stats: IStatType[]
   description: string

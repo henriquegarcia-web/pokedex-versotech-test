@@ -15,7 +15,7 @@ const PokemonEvolutionCard = ({ evolution }: IPokemonEvolutionCard) => {
 
   return (
     <S.PokemonEvolutionCard
-      onClick={() => navigate(`/pokedex/${evolution.name}`)}
+      onClick={() => navigate(`/pokedex/${evolution.id}`)}
     >
       <S.PokemonEvolutionCardImage
         className="pokemon-image"

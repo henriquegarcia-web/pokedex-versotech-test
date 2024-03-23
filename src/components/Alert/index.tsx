@@ -17,8 +17,6 @@ const Alert = () => {
     })
   }
 
-  console.log(isVisible)
-
   return (
     <S.AlertBackdrop visible={isVisible ? 1 : 0}>
       <S.Alert>

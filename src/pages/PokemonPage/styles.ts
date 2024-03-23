@@ -288,6 +288,7 @@ export const PokemonMainInfos = styled.div`
 
 export const PokemonMainInfoWrapper = styled.div`
   display: flex;
+  align-items: center;
   column-gap: 5px;
   width: calc(50% - (10px / 2));
   padding: 6px 8px;

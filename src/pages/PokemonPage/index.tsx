@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 
 import * as S from './styles'
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi'
-import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 import {
   Header,
   PokemonEvolutionCard,
+  PokemonGender,
   PokemonStat,
   PokemonType
 } from '@/components'
@@ -44,6 +44,7 @@ const PokemonPage = () => {
       const response = await api.get(`pokemon/${evolution.species?.name}`)
       const data = response.data
       return {
+        id: data.id,
         name: evolution.species?.name,
         image: data.sprites.other.home.front_default,
         types: data.types
@@ -101,6 +102,7 @@ const PokemonPage = () => {
         name: data.name,
         height: data.height,
         weight: data.weight,
+        gender_rate: speciesData?.gender_rate || -1,
         types: data.types,
         stats: data.stats,
         description:
@@ -339,7 +341,9 @@ const PokemonMainInfos = ({
           </S.PokemonMainInfoWrapper>
           <S.PokemonMainInfoWrapper>
             <b>Gender:</b>
-            <p>{pokemonInfo?.height}</p>
+            <p>
+              <PokemonGender genderRate={pokemonInfo?.gender_rate || -1} />
+            </p>
           </S.PokemonMainInfoWrapper>
         </>
       )}
