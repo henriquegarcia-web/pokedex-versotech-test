@@ -168,11 +168,20 @@ export const PokemonInfoPrimaryWrapper = styled.div`
 `
 
 export const PokemonInfoImage = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
+  padding-top: 100%;
 
   img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   @media screen and (max-width: ${responsiveTablet}) {
