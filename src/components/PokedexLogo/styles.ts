@@ -11,6 +11,7 @@ export const PokedexLogo = styled.div`
   h1 {
     display: flex;
     align-items: center;
+    transition: 0.2s;
 
     font-family: 'Fugaz One', sans-serif;
     font-size: 46px;
@@ -22,6 +23,14 @@ export const PokedexLogo = styled.div`
       font-size: 46px;
       margin-bottom: 2px;
       transform: rotate(1deg);
+      transition: 0.2s;
+    }
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(20deg) scale(1.2);
+      margin: 0 5px;
     }
   }
 
