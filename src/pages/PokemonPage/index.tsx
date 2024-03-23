@@ -132,7 +132,13 @@ const PokemonPage = () => {
 
   useEffect(() => {
     fetchPokemonInfos()
-  }, [pokemonId])
+  }, [params])
+
+  useEffect(() => {
+    if (!totalCount || totalCount === 0) {
+      navigate('/pokedex')
+    }
+  }, [totalCount])
 
   const pageIndex = useMemo(() => {
     if (!pokemonId) return 1
