@@ -19,6 +19,7 @@ PokéDex App é um aplicativo web desenvolvido em React e Redux, que permite aos
 - Visualizar informações detalhadas sobre cada Pokémon, incluindo nome, imagem, descrição, tipo, estatísticas e evoluções.
 - Buscar Pokémon por nome ou número.
 - Design responsivo para uma experiência do usuário perfeita em todos os dispositivos.
+- Loaders na página da listagem e visualização dos Pokémons no formato skeleton.
 
 ## Tecnologias e Bibliotecas Utilizadas
 
