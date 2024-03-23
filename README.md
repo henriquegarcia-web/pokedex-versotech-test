@@ -55,5 +55,5 @@ PokéDex App é um aplicativo web desenvolvido em React e Redux, que permite aos
 
 - Agradecimento especial à empresa [VersoTech](https://www.versotech.com.br/) por disponibilizar o teste.
 - [pokeapi.co](https://pokeapi.co/) por fornecer a API de dados dos Pokémon.
-- [Daria Sivova](https://dribbble.com/dashasomorgan) pelo [design](https://dribbble.com/shots/21488745-Pok-dex-Web-Version-Redesign) utilizado como inspiração.
+- [Daria Sivova](https://dribbble.com/dashasomorgan){:target="\_blank"} pelo [design](https://dribbble.com/shots/21488745-Pok-dex-Web-Version-Redesign) utilizado como inspiração.
 - [Simone Cavallini](https://dribbble.com/scava) pelo [design](https://dribbble.com/shots/20062554-Pok-dex) utilizado como inspiração.
