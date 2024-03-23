@@ -1,12 +1,4 @@
-interface IAlertState {
-  isVisible: boolean
-  type: string
-  message: string
-}
-
-type IAlertAction =
-  | { type: 'SHOW_ALERT'; payload: IAlertState }
-  | { type: 'HIDE_ALERT' }
+import { IAlertAction, IAlertState } from './types'
 
 const initialState: IAlertState = {
   isVisible: false,

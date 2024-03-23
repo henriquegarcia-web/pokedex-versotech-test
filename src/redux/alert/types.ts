@@ -11,11 +11,11 @@ export enum EnumAlertActionTypes {
 
 interface IShowAlertAction {
   type: EnumAlertActionTypes.SHOW_ALERT
-  payload: { type: string; message: string }
+  payload: IAlertState
 }
 
 interface IHideAlertAction {
   type: EnumAlertActionTypes.HIDE_ALERT
 }
 
-export type AlertAction = IShowAlertAction | IHideAlertAction
+export type IAlertAction = IShowAlertAction | IHideAlertAction
