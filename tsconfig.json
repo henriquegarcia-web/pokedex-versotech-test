@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "jest", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./src/*"]
     },
