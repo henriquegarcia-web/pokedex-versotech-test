@@ -14,11 +14,20 @@ export const PokemonGender = ({ genderRate }: IPokemonGender) => {
       case -1:
         icons.push(<FaGenderless key="genderless" />)
         break
+      case 0:
       case 1:
+      case 2:
+        icons.push(<FaMars key="male" />)
+        break
+      case 3:
+      case 4:
+      case 5:
+        icons.push(<FaMars key="male" />)
         icons.push(<FaVenus key="female" />)
         break
+      case 6:
+      case 7:
       case 8:
-        icons.push(<FaVenusMars key="male" />)
         icons.push(<FaVenus key="female" />)
         break
       default:
